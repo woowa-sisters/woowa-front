@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:title="홈"
+        android:icon="@drawable/outline_home" />
+    <item
+        android:id="@+id/menu_subscribe"
+        android:title="구독"
+        android:icon="@drawable/outline_check_box" />
+    <item
+        android:id="@+id/menu_add"
+        android:title="생성"
+        android:icon="@drawable/outline_add_box" />
+    <item
+        android:id="@+id/menu_book"
+        android:title="책"
+        android:icon="@drawable/outline_book" />
+    <item
+        android:id="@+id/menu_group"
+        android:title="모임"
+        android:icon="@drawable/outline_groups" />
+</menu>
