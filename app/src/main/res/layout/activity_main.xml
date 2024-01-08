@@ -35,8 +35,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="parent"
-        app:itemIconTint="@color/gray"
-        app:itemTextColor="@color/gray"
+        app:itemIconTint="@drawable/color_selector"
+        app:itemTextColor="@drawable/color_selector"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_bottom" />
 
