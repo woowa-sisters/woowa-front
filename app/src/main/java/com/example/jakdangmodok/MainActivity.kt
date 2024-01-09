@@ -39,6 +39,15 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.menu_profile -> {
                 menu.elementAt(0).setIcon(R.drawable.baseline_person)
+                menu.elementAt(1).setIcon(R.drawable.outline_notifications)
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_container, fragments[5]).commit()
+                true
+            }
+
+            R.id.menu_notification -> {
+                menu.elementAt(0).setIcon(R.drawable.outline_person)
+                menu.elementAt(1).setIcon(R.drawable.baseline_notifications)
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_container, fragments[5]).commit()
                 true
@@ -78,6 +87,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             menu.elementAt(0).setIcon(R.drawable.outline_person)
+            menu.elementAt(1).setIcon(R.drawable.outline_notifications)
             true
         }
     }
