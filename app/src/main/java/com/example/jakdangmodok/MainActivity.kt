@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.example.jakdangmodok.databinding.ActivityMainBinding
 
@@ -12,6 +13,9 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val fragments: List<Fragment> by lazy {
         listOf(HomeFragment(), SubscribeFragment(), AddFragment(), BookFragment(), GroupFragment(), ProfileFragment())
+    }
+    private val menu by lazy {
+        binding.toolbar.menu.children
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_profile -> {
+                menu.elementAt(0).setIcon(R.drawable.baseline_person)
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_container, fragments[5]).commit()
                 true
@@ -72,6 +77,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            menu.elementAt(0).setIcon(R.drawable.outline_person)
             true
         }
     }
