@@ -3,21 +3,21 @@
     <item
         android:id="@+id/menu_home"
         android:title="홈"
-        android:icon="@drawable/outline_home" />
+        android:icon="@drawable/menu_home_selector" />
     <item
         android:id="@+id/menu_subscribe"
         android:title="구독"
-        android:icon="@drawable/outline_check_box" />
+        android:icon="@drawable/menu_subscribe_selector" />
     <item
         android:id="@+id/menu_add"
         android:title="생성"
-        android:icon="@drawable/outline_add_box" />
+        android:icon="@drawable/menu_add_selector" />
     <item
         android:id="@+id/menu_book"
         android:title="책"
-        android:icon="@drawable/outline_book" />
+        android:icon="@drawable/menu_book_selector" />
     <item
         android:id="@+id/menu_group"
         android:title="모임"
-        android:icon="@drawable/outline_groups" />
+        android:icon="@drawable/menu_group_selector" />
 </menu>
