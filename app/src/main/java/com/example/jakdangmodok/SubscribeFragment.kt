@@ -5,13 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.jakdangmodok.databinding.FragmentSubscribeBinding
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class SubscribeFragment : Fragment() {
     private val binding by lazy { FragmentSubscribeBinding.inflate(layoutInflater) }
     private val tabMenuList = listOf("책", "모임")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -39,7 +42,23 @@ class SubscribeFragment : Fragment() {
             tab.text = tabMenuList[position]
         }.attach()
 
+        setTabItemMargin(binding.tabLayout, 50)
+
         return binding.root
+    }
+
+    // TabLayout Tab 사이 간격 부여
+    private fun setTabItemMargin(tabLayout: TabLayout, marginEnd: Int = 20) {
+        for(i in 0 until 3) {
+            val tabs = tabLayout.getChildAt(0) as ViewGroup
+            for(i in 0 until tabs.childCount) {
+                val tab = tabs.getChildAt(i)
+                val lp = tab.layoutParams as LinearLayout.LayoutParams
+                lp.marginEnd = marginEnd
+                tab.layoutParams = lp
+                tabLayout.requestLayout()
+            }
+        }
     }
 
     /*
