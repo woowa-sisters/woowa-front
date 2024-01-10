@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <!-- 구독 버튼 -->
+    <ImageButton
+        android:id="@+id/btn_subscribe_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/outline_favorite"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <!-- 책 이미지 -->
+    <ImageView
+        android:id="@+id/book_info_image"
+        android:layout_width="110dp"
+        android:layout_height="140dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <!-- 책 정보 -->
+    <TextView
+        android:id="@+id/book_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="17dp"
+        android:text="Title"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/book_info_image"
+        app:layout_constraintStart_toEndOf="@id/book_info_image"/>
+
+    <TextView
+        android:id="@+id/book_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="17dp"
+        android:text="Author"
+        android:textSize="16dp"
+        app:layout_constraintTop_toBottomOf="@id/book_title"
+        app:layout_constraintStart_toEndOf="@id/book_info_image" />
+
+    <!-- 구독 버튼 -->
+    <ImageButton
+        android:id="@+id/btn_notification_book"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/baseline_star"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@id/book_author"
+        app:layout_constraintStart_toEndOf="@id/book_info_image" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="17dp"
+        android:text="n일 후에 모임이 열려요"
+        android:textSize="14dp"
+        app:layout_constraintTop_toBottomOf="@id/book_author"
+        app:layout_constraintStart_toEndOf="@id/btn_notification_book" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
