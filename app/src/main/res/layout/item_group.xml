@@ -104,10 +104,10 @@
         android:layout_marginRight="5dp"
         android:src="@drawable/baseline_group_participant"
         app:layout_constraintBottom_toBottomOf="@id/group_image_card"
-        app:layout_constraintEnd_toStartOf="@id/group_participant" />
+        app:layout_constraintEnd_toStartOf="@id/group_member_count" />
 
     <TextView
-        android:id="@+id/group_participant"
+        android:id="@+id/group_member_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
