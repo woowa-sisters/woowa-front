@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".GroupFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello group fragment" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <SearchView
+            android:id="@+id/search_group"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:queryHint="모임 검색"
+            android:iconifiedByDefault="false"
+            android:background="@drawable/search_background"
+            android:queryBackground="@null"
+            android:searchIcon="@null"
+            android:elevation="5dp" />
+
+        <Spinner
+            android:id="@+id/spinner_group"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:textAlignment="center"
+            android:background="@drawable/spinner_background"
+            android:elevation="5dp"
+            android:spinnerMode="dropdown" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_group"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
