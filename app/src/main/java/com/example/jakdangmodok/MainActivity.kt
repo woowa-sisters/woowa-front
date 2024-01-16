@@ -1,5 +1,6 @@
 package com.example.jakdangmodok
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +13,7 @@ import com.example.jakdangmodok.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val fragments: List<Fragment> by lazy {
-        listOf(HomeFragment(), SubscribeFragment(), AddFragment(), BookFragment(), GroupFragment(), ProfileFragment())
+        listOf(HomeFragment(), SubscribeFragment(), BookFragment(), GroupFragment(), ProfileFragment())
     }
     private val menu by lazy {
         binding.toolbar.menu.children
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 menu.elementAt(0).setIcon(R.drawable.outline_person)
                 menu.elementAt(1).setIcon(R.drawable.baseline_notifications)
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_container, fragments[5]).commit()
+                    .replace(R.id.main_container, fragments[4]).commit()
                 true
             }
 
@@ -71,18 +72,18 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.menu_add -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, fragments[2]).commit()
+                    val intent = Intent(this, AddActivity::class.java)
+                    startActivity(intent)
                 }
 
                 R.id.menu_book -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, fragments[3]).commit()
+                        .replace(R.id.main_container, fragments[2]).commit()
                 }
 
                 R.id.menu_group -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container,fragments[4]).commit()
+                        .replace(R.id.main_container,fragments[3]).commit()
                 }
             }
 
