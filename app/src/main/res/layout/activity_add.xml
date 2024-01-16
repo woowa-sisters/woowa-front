@@ -190,8 +190,13 @@
             <EditText
                 android:id="@+id/edittext_group_intro"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:inputType="textMultiLine" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:inputType="text|textMultiLine"
+                android:scrollbars="vertical"
+                android:gravity="top|left"
+                android:lines="7"
+                android:background="@drawable/edittext_multiline_background" />
 
             <!-- 회비 -->
             <LinearLayout
@@ -240,6 +245,18 @@
                 android:id="@+id/button_container_add"
                 android:layout_width="match_parent"
                 android:layout_height="0dp" />
+
+            <!-- 모임 생성 버튼 -->
+            <Button
+                android:id="@+id/button_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/tab_background_selected"
+                android:text="모임 생성하기"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
