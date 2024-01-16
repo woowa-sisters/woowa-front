@@ -33,6 +33,7 @@
             android:layout_weight="1"/>
 
         <Button
+            android:id="@+id/button_profile_edit"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:text="정보 수정"
@@ -217,6 +218,7 @@
 
 
     <Button
+        android:id="@+id/button_setting_notification"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="알림 설정"
