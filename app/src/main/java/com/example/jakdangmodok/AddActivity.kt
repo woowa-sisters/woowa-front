@@ -14,6 +14,7 @@ class AddActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbarAdd)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
 }
