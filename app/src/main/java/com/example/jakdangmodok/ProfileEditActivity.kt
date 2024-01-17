@@ -15,5 +15,6 @@ class ProfileEditActivity : AppCompatActivity() {
 
         binding.recyclerviewGenre.layoutManager = GridLayoutManager(this, 3)
         binding.recyclerviewGenre.adapter = GenreAdapter()
+        binding.recyclerviewGenre.addItemDecoration(GridSpaceItemDecoration(3, 20))
     }
 }
