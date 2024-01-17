@@ -13,7 +13,7 @@ import com.example.jakdangmodok.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val fragments: List<Fragment> by lazy {
-        listOf(HomeFragment(), SubscribeFragment(), BookFragment(), GroupFragment(), ProfileFragment())
+        listOf(HomeFragment(), SubscribeFragment(), BookFragment(), GroupFragment())
     }
     private val menu by lazy {
         binding.toolbar.menu.children
@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
             R.id.menu_profile -> {
                 menu.elementAt(0).setIcon(R.drawable.baseline_person)
                 menu.elementAt(1).setIcon(R.drawable.outline_notifications)
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_container, fragments[5]).commit()
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
                 true
             }
 
