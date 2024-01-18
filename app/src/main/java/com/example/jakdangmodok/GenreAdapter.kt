@@ -1,11 +1,28 @@
 package com.example.jakdangmodok
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jakdangmodok.databinding.ItemGenreBinding
 
-class GenreViewHolder(val binding: ItemGenreBinding): RecyclerView.ViewHolder(binding.root)
+class GenreViewHolder(val binding: ItemGenreBinding): RecyclerView.ViewHolder(binding.root) {
+    init {
+        binding.genreButton.setOnClickListener() {
+            val context = binding.root.context
+
+            // 버튼 선택
+            if (binding.genreButton.textColors.defaultColor == ContextCompat.getColor(context, R.color.gray)) {
+                binding.genreButton.setBackgroundResource(R.drawable.genre_selected)
+                binding.genreButton.setTextColor(Color.WHITE)
+            } else { // 버튼 선택 해제
+                binding.genreButton.setBackgroundResource(R.drawable.genre_unselected)
+                binding.genreButton.setTextColor(ContextCompat.getColor(context, R.color.gray))
+            }
+        }
+    }
+}
 
 class GenreAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

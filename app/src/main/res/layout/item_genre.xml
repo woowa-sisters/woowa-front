@@ -13,6 +13,6 @@
         android:text="장르"
         android:textSize="15sp"
         android:textColor="@color/gray"
-        android:background="@drawable/button_genre_select" />
+        android:background="@drawable/genre_unselected" />
 
 </LinearLayout>
