@@ -59,6 +59,12 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="10dp"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_genre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -213,7 +219,7 @@
 
 
     </GridLayout>
-
+    -->
 
     <Button
         android:layout_width="match_parent"
