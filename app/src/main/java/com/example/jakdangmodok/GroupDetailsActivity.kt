@@ -16,6 +16,11 @@ class GroupDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        // 모임명
+        intent.getStringExtra("groupId")?.let {
+            binding.groupTitle.text = it
+        }
+
         // 멤버 소개
         binding.recyclerviewMember.layoutManager = LinearLayoutManager(this)
         binding.recyclerviewMember.adapter = MemberAdapter(memberList)

@@ -10,6 +10,7 @@ class GroupViewHolder(val binding: ItemGroupBinding): RecyclerView.ViewHolder(bi
     init {
         binding.root.setOnClickListener {
             val intent = Intent(binding.root.context, GroupDetailsActivity::class.java)
+            intent.putExtra("groupId", binding.groupTitle.text.toString())
             binding.root.context.startActivity(intent)
         }
     }
