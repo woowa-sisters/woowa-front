@@ -1,11 +1,19 @@
 package com.example.jakdangmodok
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jakdangmodok.databinding.ItemGroupBinding
 
-class GroupViewHolder(val binding: ItemGroupBinding): RecyclerView.ViewHolder(binding.root)
+class GroupViewHolder(val binding: ItemGroupBinding): RecyclerView.ViewHolder(binding.root) {
+    init {
+        binding.root.setOnClickListener {
+            val intent = Intent(binding.root.context, GroupDetailsActivity::class.java)
+            binding.root.context.startActivity(intent)
+        }
+    }
+}
 
 class GroupAdapter(val groupList: ArrayList<String>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
