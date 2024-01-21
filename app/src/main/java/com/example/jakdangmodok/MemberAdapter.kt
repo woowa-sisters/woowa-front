@@ -2,6 +2,7 @@ package com.example.jakdangmodok
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jakdangmodok.databinding.ItemBookBinding
 import com.example.jakdangmodok.databinding.ItemMemberBinding
@@ -21,6 +22,10 @@ class MemberAdapter(val memberList: ArrayList<String>): RecyclerView.Adapter<Rec
 
         binding.profileImage.setImageResource(R.drawable.bookimage)
         binding.profileName.setText(memberList[position])
+
+        if (position == 0) {
+            binding.markGroupLeader.isVisible = true
+        }
     }
 
 }

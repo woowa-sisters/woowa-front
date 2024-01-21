@@ -38,6 +38,7 @@
         android:text="모임장"
         android:textColor="@color/green"
         android:textSize="10sp"
-        android:background="@drawable/group_leader_background" />
+        android:background="@drawable/group_leader_background"
+        android:visibility="invisible" />
 
 </LinearLayout>
