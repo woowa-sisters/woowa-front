@@ -59,161 +59,11 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="10dp"/>
 
-    <GridLayout
+    <!-- 장르 버튼 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_genre"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:rowCount="6"
-        android:columnCount="3">
-
-        <Button
-            android:text="SF"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="로맨스"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="코미디"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="순수과학"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="범죄"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="추리"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="예술"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="스릴러"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="공포"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="금융"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="자기계발"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="IT"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="디자인"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="교육"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="종교"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="시"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="소설"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-        <Button
-            android:text="자서전"
-            android:textSize="15dp"
-            android:layout_height="34dp"
-            android:textColor="#5f5f5f"
-            android:background="@drawable/button_genre_select"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"/>
-
-
-    </GridLayout>
-
+        android:layout_height="wrap_content" />
 
     <Button
         android:layout_width="match_parent"
@@ -223,10 +73,5 @@
         android:text="수정 완료"
         android:textColor="@color/white"
         android:textSize="20dp" />
-
-
-
-
-
 
 </LinearLayout>
