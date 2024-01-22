@@ -21,7 +21,7 @@
             android:background="@color/white">
 
             <TextView
-                android:id="@+id/toolbar_add_title"
+                android:id="@+id/toolbar_group_details_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -41,189 +41,346 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="25dp">
+            android:orientation="vertical">
 
-            <!-- 모임장이 설정한 모임명 -->
+            <!-- 모임명 -->
             <TextView
+                android:id="@+id/group_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="모임장이 설정한 모임명"
-                android:textColor="#575757"
+                android:layout_marginTop="25sp"
+                android:layout_marginBottom="25sp"
+                android:text="모임명"
+                android:textColor="@color/gray"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
             <!-- 책 설명 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="40sp"
+                android:paddingRight="40sp">
+
+                <ImageView
+                    android:id="@+id/book_image"
+                    android:layout_width="110sp"
+                    android:layout_height="160sp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bookimage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/book_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:layout_marginLeft="20sp"
+                    android:text="제목"
+                    android:textColor="@color/gray"
+                    app:layout_constraintStart_toEndOf="@id/book_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/book_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:layout_marginLeft="20sp"
+                    android:text="지은이"
+                    android:textColor="@color/gray"
+                    app:layout_constraintStart_toEndOf="@id/book_image"
+                    app:layout_constraintTop_toBottomOf="@id/book_title" />
+
+                <TextView
+                    android:id="@+id/book_page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:layout_marginLeft="20sp"
+                    android:text="쪽수"
+                    android:textColor="@color/gray"
+                    app:layout_constraintStart_toEndOf="@id/book_image"
+                    app:layout_constraintTop_toBottomOf="@id/book_author" />
+
+                <TextView
+                    android:id="@+id/book_genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:layout_marginLeft="20sp"
+                    android:text="구분"
+                    android:textColor="@color/gray"
+                    app:layout_constraintStart_toEndOf="@id/book_image"
+                    app:layout_constraintTop_toBottomOf="@id/book_page" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 모임 설명 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20sp">
+                android:orientation="vertical"
+                android:paddingLeft="30sp"
+                android:paddingRight="30sp"
+                android:paddingTop="20sp"
+                android:paddingBottom="20sp">
 
-                <ImageView
-                    android:layout_width="120sp"
-                    android:layout_height="120sp"
-                    android:src="@drawable/bookimage"
-                    android:layout_marginHorizontal="25sp"/>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_weight="1" >
+                    android:layout_height="wrap_content"
+                    android:text="모임장"
+                    android:textColor="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="날짜 및 시간"
+                    android:textColor="@color/gray"
+                    android:layout_marginTop="15sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="모임 장소"
+                    android:textColor="@color/gray"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15sp" />
+
+                <!-- 지도 (임시로 공간만 만들어 놓은 상태. 추후 추가 예정)-->
+                <ImageView
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="170sp"
+                    android:layout_marginTop="15sp"
+                    android:background="@drawable/button_line_rect"/>
+
+                <!-- 소개글 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="소개글"
+                    android:textColor="@color/gray"
+                    android:textStyle="bold"
+                    android:layout_marginTop="25sp" />
+
+                <TextView
+                    android:id="@+id/introduction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="소개글"
+                    android:layout_marginTop="10sp" />
+
+                <!-- 회비 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20sp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="제목"
-                        android:layout_marginVertical="2.5sp"
-                        android:layout_weight="1"/>
+                        android:text="회비"
+                        android:textColor="@color/gray"
+                        android:textStyle="bold" />
+
                     <TextView
+                        android:id="@+id/fee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="지은이"
-                        android:layout_marginVertical="2.5sp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="쪽수"
-                        android:layout_marginVertical="2.5sp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="구분"
-                        android:layout_marginVertical="2.5sp"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1"
+                        android:text="0 원"
+                        android:gravity="right" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
-            <!-- 모임장 날짜 모임장소 설명 -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="모임장"
-                android:layout_marginTop="20sp"
-                android:layout_marginLeft="15sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="날짜"
-                android:layout_marginTop="10sp"
-                android:layout_marginLeft="15sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="모임 장소"
-                android:textStyle="bold"
-                android:layout_marginTop="10sp"
-                android:layout_marginLeft="15sp"/>
-
-            <!-- 지도 (임시로 공간만 만들어 놓은 상태. 추후 추가 예정)-->
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="170sp"
-                android:layout_marginTop="30sp"
-                android:layout_marginHorizontal="18sp"
-                android:background="@drawable/button_line_rect"/>
-
-            <!-- 소개글 -->
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="소개글"
-                android:textStyle="bold"
-                android:layout_marginTop="20sp"
-                android:layout_marginLeft="15sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="소개글"
-                android:layout_marginTop="10sp"
-                android:layout_marginLeft="15sp"/>
-
-            <!-- 회비 -->
-
-            <LinearLayout
+            <!-- 멤버 소개 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20sp"
-                android:layout_marginHorizontal="15sp"
-                >
+                android:paddingLeft="30sp"
+                android:paddingRight="30sp"
+                android:paddingTop="20sp">
 
                 <TextView
+                    android:id="@+id/member_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="회비"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10000원"
-                    android:layout_weight="1"
-                    android:gravity="right"/>
-
-            </LinearLayout>
-
-            <!-- 멤버소개 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="멤버소개" />
+                    android:text="멤버소개"
+                    android:textColor="@color/gray"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/member_now"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4" />
+                    android:text="m / n"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
+                <!-- 멤버 정보 -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_member"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/member_title" />
+
+                <!-- 승인 대기중인 멤버 -->
                 <TextView
+                    android:id="@+id/member_waiting_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="/" />
+                    android:layout_marginTop="30sp"
+                    android:text="승인 대기중인 멤버"
+                    android:textColor="@color/red"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerview_member" />
 
-                <TextView
-                    android:id="@+id/member_maximum"
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_member_waiting"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="5" />
+                    android:layout_marginTop="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/member_waiting_title" />
 
-            </LinearLayout>
-
-
-
-
-
-
-
-            <!-- 승인 대기중인 멤버 -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="승인 대기중인 멤버" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <!-- 모임장의 다른 모임 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="모임장의 다른 모임"
+                    android:textColor="@color/gray"
+                    android:textStyle="bold"
+                    android:layout_marginTop="30sp"
+                    android:layout_marginLeft="30sp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_other_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp" />
+
+            </LinearLayout>
 
             <!-- 질문 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="30sp">
 
-            <!-- 하단 바 (얘도 스크롤뷰 안 리니어레이아웃 안에 있어야 함) -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="질문"
+                    android:textColor="@color/gray"
+                    android:textStyle="bold" />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp" />
+
+            </LinearLayout>
+
+            <!-- 하단 바 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                android:elevation="10sp"
+                android:paddingLeft="15sp"
+                android:paddingRight="15sp">
+
+                <!-- 구독 및 댓글 수 -->
+                <ImageButton
+                    android:id="@+id/favorite_button"
+                    android:layout_width="17sp"
+                    android:layout_height="17sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/outline_favorite"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <TextView
+                    android:id="@+id/favorite_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:text="0"
+                    android:textColor="@color/gray"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toEndOf="@id/favorite_button"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <ImageView
+                    android:id="@+id/comment_image"
+                    android:layout_width="19sp"
+                    android:layout_height="19sp"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/baseline_comment"
+                    app:layout_constraintStart_toEndOf="@id/favorite_count"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <TextView
+                    android:id="@+id/comment_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:text="0"
+                    android:textColor="@color/gray"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toEndOf="@id/comment_image"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <!-- 버튼 -->
+                <Button
+                    android:id="@+id/question_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35sp"
+                    android:layout_marginRight="15sp"
+                    android:text="질문 달기"
+                    android:textColor="@color/gray"
+                    android:background="@drawable/button_genre_select"
+                    app:layout_constraintEnd_toStartOf="@id/apply_button"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <Button
+                    android:id="@+id/apply_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35sp"
+                    android:text="신청하기"
+                    android:textColor="@color/gray"
+                    android:background="@drawable/button_genre_select"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 
