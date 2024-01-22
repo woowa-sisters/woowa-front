@@ -13,16 +13,15 @@ import com.example.jakdangmodok.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val fragments: List<Fragment> by lazy {
-        listOf(HomeFragment(), SubscribeFragment(), BookFragment(), GroupFragment(), ProfileFragment())
-    }
-    private val menu by lazy {
-        binding.toolbar.menu.children
+        listOf(HomeFragment(), SubscribeFragment(), BookFragment(), GroupFragment())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         setBottomNavigationView()
 
@@ -39,16 +38,12 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_profile -> {
-                menu.elementAt(0).setIcon(R.drawable.baseline_person)
-                menu.elementAt(1).setIcon(R.drawable.outline_notifications)
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_container, fragments[5]).commit()
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
                 true
             }
 
             R.id.menu_notification -> {
-                menu.elementAt(0).setIcon(R.drawable.outline_person)
-                menu.elementAt(1).setIcon(R.drawable.baseline_notifications)
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_container, fragments[4]).commit()
                 true
@@ -87,8 +82,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            menu.elementAt(0).setIcon(R.drawable.outline_person)
-            menu.elementAt(1).setIcon(R.drawable.outline_notifications)
             true
         }
     }

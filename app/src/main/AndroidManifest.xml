@@ -13,6 +13,21 @@
         android:theme="@style/Theme.Jakdangmodok"
         tools:targetApi="31">
         <activity
+            android:name=".GroupDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileNotificationActivity"
+            android:exported="false"
+            android:parentActivityName=".ProfileActivity" />
+        <activity
+            android:name=".ProfileEditActivity"
+            android:exported="false"
+            android:parentActivityName=".ProfileActivity" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".AddActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
