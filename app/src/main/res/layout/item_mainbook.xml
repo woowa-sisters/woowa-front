@@ -21,7 +21,7 @@
         android:layout_marginBottom="17sp"/>
 
     <TextView
-        android:id="@+id/txt_title"
+        android:id="@+id/mainbook_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="17sp"
@@ -31,13 +31,13 @@
         android:layout_marginBottom="15sp"/>
 
     <TextView
-        android:id="@+id/txt_author"
+        android:id="@+id/mainbook_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="17sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_title"/>
+        app:layout_constraintTop_toBottomOf="@id/mainbook_title"/>
 
 
 
