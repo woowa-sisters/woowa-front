@@ -30,6 +30,8 @@ class BookFragment : Fragment() {
     private val ttbkey: String = "ttbnaahyin02016001"
     private val query: String = "ItemNewSpecial"
 
+    private val bookService = retrofit.create(BookService::class.java)
+
     private val filterList: Array<String> = arrayOf("최신순", "마감순", "거리순")
     private val bookList: ArrayList<String> = ArrayList<String>()
 
@@ -44,6 +46,7 @@ class BookFragment : Fragment() {
         val binding = FragmentBookBinding.inflate(inflater, container, false)
 
         getBookList(query)
+        getBookSearch("안드로이드")
 
         val filterAdapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, filterList)
         filterAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
@@ -55,8 +58,30 @@ class BookFragment : Fragment() {
         return binding.root
     }
 
+    // 책 검색
+    private fun getBookSearch(query: String) {
+        val call = bookService.getBookSearch(ttbkey, query)
+
+        call.enqueue(object: Callback<String> {
+            override fun onResponse(
+                call: Call<String>,
+                response: Response<String>
+            ) {
+                if (response.isSuccessful) {
+                    Log.e(TAG, "onResponse(search): " + response.body());
+                } else {
+                    Log.d("BookFragment", "fail: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Log.d("BookFragment", "onFailure: ${t.message}")
+            }
+        })
+    }
+
+    // 책 목록
     private fun getBookList(query: String) {
-        val bookService = retrofit.create(BookService::class.java)
 
         val call = bookService.getBookList(ttbkey, "Bestseller", "안드로이드")
 
@@ -66,7 +91,7 @@ class BookFragment : Fragment() {
                 response: Response<String>
             ) {
                 if (response.isSuccessful) {
-                    Log.e(TAG, "onResponse: " + response.body());
+                    Log.e(TAG, "onResponse(list): " + response.body());
                     /*
                     response.body()?.books?.forEach{
                         Log.d(TAG, it.toString())
