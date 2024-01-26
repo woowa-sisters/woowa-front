@@ -1,24 +1,21 @@
 package com.example.jakdangmodok
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import com.example.jakdangmodok.databinding.ActivityAddBinding
+import com.example.jakdangmodok.databinding.ActivityBookSearchBinding
 
-class AddActivity : AppCompatActivity() {
+class BookSearchActivity : AppCompatActivity() {
 
-    private val binding by lazy { ActivityAddBinding.inflate(layoutInflater) }
+    private val binding = ActivityBookSearchBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbarAdd)
+        setSupportActionBar(binding.toolbarSearchBook)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
-
     }
 
     // 뒤로가기 버튼
@@ -30,14 +27,6 @@ class AddActivity : AppCompatActivity() {
             }
 
             else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun init() {
-        binding.searchBookAdd.setOnClickListener {
-            // 책 검색 액티비티로 이동
-            val intent = Intent(this, BookSearchActivity::class.java)
-            startActivity(intent)
         }
     }
 
