@@ -27,8 +27,6 @@ class BookFragment : Fragment() {
         .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
-    private val ttbkey: String = "ttbnaahyin02016001"
-    private val query: String = "ItemNewSpecial"
 
     private val bookService = retrofit.create(BookService::class.java)
 
@@ -45,8 +43,8 @@ class BookFragment : Fragment() {
     ): View? {
         val binding = FragmentBookBinding.inflate(inflater, container, false)
 
-        getBookList(query)
-        getBookSearch("안드로이드")
+        getBookList("ItemNewSpecial")
+        //getBookSearch("안드로이드")
 
         val filterAdapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, filterList)
         filterAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
@@ -60,7 +58,7 @@ class BookFragment : Fragment() {
 
     // 책 검색
     private fun getBookSearch(query: String) {
-        val call = bookService.getBookSearch(ttbkey, query)
+        val call = bookService.getBookSearch(TTBKEY, query)
 
         call.enqueue(object: Callback<String> {
             override fun onResponse(
@@ -83,21 +81,19 @@ class BookFragment : Fragment() {
     // 책 목록
     private fun getBookList(query: String) {
 
-        val call = bookService.getBookList(ttbkey, "Bestseller", "안드로이드")
+        val call = bookService.getBookList(TTBKEY, QUERYTYPE, SEARCHTARGET, OUTPUT, VERSION)
 
-        call.enqueue(object: Callback<String> {
+        call.enqueue(object: Callback<BookListDTO> {
             override fun onResponse(
-                call: Call<String>,
-                response: Response<String>
+                call: Call<BookListDTO>,
+                response: Response<BookListDTO>
             ) {
                 if (response.isSuccessful) {
-                    Log.e(TAG, "onResponse(list): " + response.body());
-                    /*
                     response.body()?.books?.forEach{
                         Log.d(TAG, it.toString())
                     }
 
-
+                    /*
                     val doc = Jsoup.parse(response.body())
                     val items = doc.select("item")
 
@@ -122,13 +118,18 @@ class BookFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
+            override fun onFailure(call: Call<BookListDTO>, t: Throwable) {
                 Log.d("BookFragment", "onFailure: ${t.message}")
             }
         })
     }
 
     companion object{
+        private const val TTBKEY = "ttbnaahyin02016001"
+        private const val QUERYTYPE = "ItemNewSpecial"
+        private const val SEARCHTARGET = "Book"
+        private const val OUTPUT = "JS"
+        private const val VERSION = "20131101"
         private const val TAG = "MainActivity"
     }
 
