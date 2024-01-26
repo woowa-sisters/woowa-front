@@ -40,28 +40,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
-                android:text="닉네임을 입력해주세요"
+                android:paddingBottom="35sp"
+                android:text="관심 장르를 선택해주세요"
                 android:textColor="@color/gray"/>
 
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50sp"
-                android:hint="3글자 이상의 닉네임을 만드세요!"
-                android:width="350sp"
-                android:height="70sp"
-                android:singleLine="true"
-                android:includeFontPadding="true"
-                />
-            <!--width로 입력 줄 길이 조절-->
+            <!-- 장르 버튼 -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_genre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="435sp"
+                android:layout_marginTop="300sp"
                 android:background="@drawable/button_greenbackground"
-                android:text="계속"
+                android:text="가입 완료"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:layout_gravity="bottom"/>
@@ -70,6 +64,16 @@
         </LinearLayout>
 
     </FrameLayout>
+
+
+
+
+
+
+
+
+
+
 
 
 
