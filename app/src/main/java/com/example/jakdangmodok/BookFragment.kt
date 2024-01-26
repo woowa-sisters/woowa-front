@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jakdangmodok.databinding.FragmentBookBinding
@@ -43,7 +44,7 @@ class BookFragment : Fragment() {
         val binding = FragmentBookBinding.inflate(inflater, container, false)
 
         getBookList(binding)
-        //getBookSearch("안드로이드")
+        initSearchView(binding)
 
         val filterAdapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, filterList)
         filterAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
@@ -54,23 +55,39 @@ class BookFragment : Fragment() {
         return binding.root
     }
 
-    // 책 검색
-    private fun getBookSearch(query: String) {
-        val call = bookService.getBookSearch(TTBKEY, query)
+    private fun initSearchView(binding: FragmentBookBinding) {
+        binding.searchBook.isSubmitButtonEnabled = true
+        binding.searchBook.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                getBookSearch(query!!, binding)
+                return false
+            }
 
-        call.enqueue(object: Callback<String> {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // @TODO
+                return true
+            }
+        })
+    }
+
+    // 책 검색
+    private fun getBookSearch(query: String, binding: FragmentBookBinding) {
+        val call = bookService.getBookSearch(TTBKEY, query, OUTPUT, VERSION)
+
+        call.enqueue(object: Callback<BookListDTO> {
             override fun onResponse(
-                call: Call<String>,
-                response: Response<String>
+                call: Call<BookListDTO>,
+                response: Response<BookListDTO>
             ) {
                 if (response.isSuccessful) {
+                    binding.recyclerviewBook.adapter = BookAdapter(response.body()!!.books)
                     Log.e(TAG, "onResponse(search): " + response.body());
                 } else {
                     Log.d("BookFragment", "fail: ${response.message()}")
                 }
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
+            override fun onFailure(call: Call<BookListDTO>, t: Throwable) {
                 Log.d("BookFragment", "onFailure: ${t.message}")
             }
         })
@@ -80,7 +97,6 @@ class BookFragment : Fragment() {
     private fun getBookList(binding: FragmentBookBinding) {
 
         val call = bookService.getBookList(TTBKEY, QUERYTYPE, SEARCHTARGET, OUTPUT, VERSION)
-        var bookList: List<Book> = listOf()
 
         call.enqueue(object: Callback<BookListDTO> {
             override fun onResponse(

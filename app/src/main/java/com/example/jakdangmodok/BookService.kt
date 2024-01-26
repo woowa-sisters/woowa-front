@@ -11,8 +11,10 @@ interface BookService {
     @GET("ItemSearch.aspx")
     fun getBookSearch(
         @Query("TTBKey") ttbkey: String,    // 알라딘 api key
-        @Query("Query") query: String  // 검색어
-    ): Call<String>
+        @Query("Query") query: String,  // 검색어
+        @Query("Output") output: String,    // 출력 형식
+        @Query("Version") version: String
+    ): Call<BookListDTO>
 
     // 알라딘 책 목록 api
     @POST("ItemList.aspx")
