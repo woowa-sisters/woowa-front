@@ -31,7 +31,6 @@ class BookFragment : Fragment() {
     private val bookService = retrofit.create(BookService::class.java)
 
     private val filterList: Array<String> = arrayOf("최신순", "마감순", "거리순")
-    private val bookList: ArrayList<String> = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,14 +42,13 @@ class BookFragment : Fragment() {
     ): View? {
         val binding = FragmentBookBinding.inflate(inflater, container, false)
 
-        getBookList("ItemNewSpecial")
+        getBookList(binding)
         //getBookSearch("안드로이드")
 
         val filterAdapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, filterList)
         filterAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
 
         binding.recyclerviewBook.layoutManager = LinearLayoutManager(activity)
-        binding.recyclerviewBook.adapter = BookAdapter(bookList)
         binding.spinnerBook.adapter = filterAdapter
 
         return binding.root
@@ -79,9 +77,10 @@ class BookFragment : Fragment() {
     }
 
     // 책 목록
-    private fun getBookList(query: String) {
+    private fun getBookList(binding: FragmentBookBinding) {
 
         val call = bookService.getBookList(TTBKEY, QUERYTYPE, SEARCHTARGET, OUTPUT, VERSION)
+        var bookList: List<Book> = listOf()
 
         call.enqueue(object: Callback<BookListDTO> {
             override fun onResponse(
@@ -89,30 +88,8 @@ class BookFragment : Fragment() {
                 response: Response<BookListDTO>
             ) {
                 if (response.isSuccessful) {
-                    response.body()?.books?.forEach{
-                        Log.d(TAG, it.toString())
-                    }
-
-                    /*
-                    val doc = Jsoup.parse(response.body())
-                    val items = doc.select("item")
-
-                    for (item in items) {
-                        val title = item.select("title").text()
-                        val author = item.select("author").text()
-                        val publisher = item.select("publisher").text()
-                        val pubdate = item.select("pubdate").text()
-                        val cover = item.select("cover").text()
-                        val description = item.select("description").text()
-                        val isbn = item.select("isbn").text()
-                        val priceSales = item.select("priceSales").text()
-                        val priceStandard = item.select("priceStandard").text()
-                        val mileage = item.select("mileage").text()
-                        val link = item.select("link").text()
-
-                        bookList.add(title)
-                    }
-                     */
+                    binding.recyclerviewBook.adapter = BookAdapter(response.body()!!.books)
+                    Log.e(TAG, "onResponse(list): " + (response.body()!!.books[0].title));
                 } else {
                     Log.d("BookFragment", "fail: ${response.message()}")
                 }
