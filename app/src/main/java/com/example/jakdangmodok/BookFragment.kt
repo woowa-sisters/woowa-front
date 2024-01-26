@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.SearchView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jakdangmodok.databinding.FragmentBookBinding
 import com.google.gson.GsonBuilder
@@ -56,7 +55,6 @@ class BookFragment : Fragment() {
     }
 
     private fun initSearchView(binding: FragmentBookBinding) {
-        binding.searchBook.isSubmitButtonEnabled = true
         binding.searchBook.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 getBookSearch(query!!, binding)
