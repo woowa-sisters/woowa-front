@@ -26,7 +26,20 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
-// 어댑터 생성하고 바인딩하기
+
+        //MainbookAdapter 생성하기
+       // binding.recyclerviewMainbook.layoutManager = LinearLayoutManager(activity)
+       // binding.recyclerviewMainbook.adapter = MainbookAdapter(mainbookTitleList)
+       // binding.recyclerviewMainbook.adapter = MainbookAdapter(mainbookAuthorList)
+
+        binding.recyclerviewGroupNew.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerviewGroupNew.adapter = GroupAdapter(groupList)
+
+        binding.recyclerviewGroupClosingsoon.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerviewGroupClosingsoon.adapter = GroupAdapter(groupList)
+
+
+
         return binding.root
     }
 }
