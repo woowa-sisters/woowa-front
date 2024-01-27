@@ -12,7 +12,7 @@ import com.example.jakdangmodok.databinding.FragmentGroupBinding
 class GroupFragment : Fragment() {
 
     private val filterList: Array<String> = arrayOf("최신순", "마감순", "거리순")
-    private val groupList: ArrayList<String> = ArrayList<String>()
+    private val groupList: ArrayList<String> = arrayListOf("코딩모임", "영화모임", "독서모임", "게임모임", "운동모임", "요리모임", "여행모임", "공연모임", "음악모임", "봉사모임", "기타모임")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
