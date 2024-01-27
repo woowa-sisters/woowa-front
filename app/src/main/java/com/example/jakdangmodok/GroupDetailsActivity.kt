@@ -1,5 +1,6 @@
 package com.example.jakdangmodok
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -51,9 +52,28 @@ class GroupDetailsActivity : AppCompatActivity() {
         binding.recyclerviewComment.adapter = CommentAdapter(commentList)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun initNaverMap() {
         NaverMapSdk.getInstance(this).client =
             NaverMapSdk.NaverCloudPlatformClient(ID)
+
+        binding.mapView.setOnTouchListener { view, motionEvent ->
+            when (motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.scrollviewGroupDetails.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                MotionEvent.ACTION_UP -> {
+                    binding.scrollviewGroupDetails.requestDisallowInterceptTouchEvent(false)
+                    true
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    binding.scrollviewGroupDetails.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                else -> true
+            }
+        }
     }
 
     // 뒤로가기 버튼
