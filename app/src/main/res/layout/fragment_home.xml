@@ -6,10 +6,124 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello home fragment" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주목할 만한 신작 리스트"
+                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/songmyung"
+                android:layout_marginTop="40sp"
+                android:layout_marginHorizontal="40sp"
+                android:layout_gravity="center_horizontal"
+                android:shadowRadius="10.0"
+                android:shadowDx="20.0"
+                android:shadowDy="20.0"
+                android:shadowColor="@color/light_gray"
+
+                />
+
+            <!-- 책 가로 리사이클러뷰-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!-- 사실 vertical인지 horizontal인지 모르겠음 돌려봐야 알 듯-->
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_mainbook"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/button_search"
+                android:layout_marginHorizontal="30sp"
+                android:layout_marginVertical="20dp"
+                android:text="      검색       책 제목"
+                android:textSize="17sp"
+                android:textColor="@color/gray"
+                android:gravity="left|center"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20sp"
+
+                android:text="최근에 생성된 모임"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:gravity="left|center"
+
+                android:drawableRight="@drawable/button_right_arrow"
+                android:background="#00ff0000" />
+
+
+            <!-- 최근에 생성한 모임 가로 리사이클러뷰-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_group_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20sp"
+
+                android:text="곧 마감하는 모임들"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:gravity="left|center"
+
+                android:drawableRight="@drawable/button_right_arrow"
+                android:background="#00ff0000" />
+
+
+            <!-- 곧 마감하는 모임들 가로 리사이클러뷰-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_group_closingsoon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>
