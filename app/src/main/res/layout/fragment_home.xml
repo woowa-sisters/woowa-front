@@ -35,8 +35,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30sp"
-                android:layout_marginBottom="30sp">
+                android:layout_marginTop="30sp">
 
                 <ImageView
                     android:id="@+id/book_cover_left"
@@ -95,12 +94,14 @@
                 <!-- 책 제목, 저자 -->
                 <TextView
                     android:id="@+id/book_title"
-                    android:layout_width="170sp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="220sp"
+                    android:layout_height="40sp"
                     android:text="책 제목"
                     android:textSize="17sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:gravity="center"
                     android:layout_marginTop="10sp"
                     app:layout_constraintTop_toBottomOf="@id/book_cover_center"
@@ -109,13 +110,14 @@
 
                 <TextView
                     android:id="@+id/book_author"
-                    android:layout_width="100sp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="220sp"
+                    android:layout_height="30sp"
                     android:text="저자"
                     android:textSize="14sp"
                     android:textColor="@color/black"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:gravity="center"
-                    android:layout_marginTop="10sp"
                     app:layout_constraintTop_toBottomOf="@id/book_title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
