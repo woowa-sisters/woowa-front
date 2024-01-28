@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context=".LoginActivity"
+    android:gravity="center">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="작당모독"
+        android:textSize="30sp"
+        android:textColor="@color/green"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"/>
+    <!-- layout_gravity를 center_horizontal로 하면 맨윗줄에서 가운데에 위치하게됨
+       화면 한가운데에 위치시키고 싶다면 전체 리니어레이아웃에 gravity속성을 center로 줘야 함.-->
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="25sp"
+        android:background="@drawable/button_search"
+        android:drawableLeft="@drawable/logo_google"
+        android:paddingHorizontal="15sp"
+        android:text="Google로 계속하기"
+        android:gravity="center"
+        />
+
+    <!-- paddingHorizontal 속성으로 구글 로고를 버튼 안쪽으로 밀어넣을 수 있음
+         버튼크기 전체를 조절하려면 margin속성을 써야 함.
+         marginTop같은 건 소용이 없는 듯.-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>
+
+
