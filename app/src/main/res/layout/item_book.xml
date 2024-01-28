@@ -33,22 +33,26 @@
     <!-- 책 정보 -->
     <TextView
         android:id="@+id/book_title"
-        android:layout_width="wrap_content"
+        android:layout_width="170sp"
         android:layout_height="wrap_content"
         android:layout_margin="17dp"
         android:text="Title"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end"
         app:layout_constraintTop_toTopOf="@id/book_image"
         app:layout_constraintStart_toEndOf="@id/book_image"/>
 
     <TextView
         android:id="@+id/book_author"
-        android:layout_width="wrap_content"
+        android:layout_width="190sp"
         android:layout_height="wrap_content"
         android:layout_margin="17dp"
         android:text="Author"
         android:textSize="16dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         app:layout_constraintTop_toBottomOf="@id/book_title"
         app:layout_constraintStart_toEndOf="@id/book_image" />
 
