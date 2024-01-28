@@ -7,11 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jakdangmodok.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() {
+
+    private val apiBookService = apiBookService()
 
     private val mainbookTitleList: ArrayList<String> = arrayListOf("내 인생의 책들", "미래는 저녁8시", "감정의 문화정치")
     private val mainbookAuthorList: ArrayList<String> = arrayListOf("리처드 도킨스", "가운데 사람", "오른쪽 사람")
@@ -27,10 +31,7 @@ class HomeFragment : Fragment() {
     ): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        //MainbookAdapter 생성하기
-       // binding.recyclerviewMainbook.layoutManager = LinearLayoutManager(activity)
-       // binding.recyclerviewMainbook.adapter = MainbookAdapter(mainbookTitleList)
-       // binding.recyclerviewMainbook.adapter = MainbookAdapter(mainbookAuthorList)
+
 
         init(binding)
 
@@ -38,6 +39,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun init(binding: FragmentHomeBinding) {
+        // 메인 책장
+        lifecycleScope.launch {
+            binding.recyclerviewMainbook.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            binding.recyclerviewMainbook.adapter = HomeBookAdapter(apiBookService.getBookList())
+        }
+
         // 검색창 이동 버튼
         binding.buttonSearch.setOnClickListener {
             val intent = Intent(binding.root.context, BookSearchActivity::class.java)

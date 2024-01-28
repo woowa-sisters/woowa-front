@@ -11,7 +11,7 @@
 
     <!-- 책 이미지 -->
     <ImageView
-        android:id="@+id/mainbook"
+        android:id="@+id/book_cover"
         android:layout_width="110dp"
         android:layout_height="140dp"
         android:scaleType="centerCrop"
@@ -21,23 +21,23 @@
         android:layout_marginBottom="17sp"/>
 
     <TextView
-        android:id="@+id/mainbook_title"
+        android:id="@+id/book_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="17sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mainbook"
+        app:layout_constraintTop_toBottomOf="@id/book_cover"
         android:layout_marginBottom="15sp"/>
 
     <TextView
-        android:id="@+id/mainbook_author"
+        android:id="@+id/book_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="17sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mainbook_title"/>
+        app:layout_constraintTop_toBottomOf="@id/book_title"/>
 
 
 
