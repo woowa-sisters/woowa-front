@@ -28,9 +28,7 @@
                 android:shadowRadius="10.0"
                 android:shadowDx="20.0"
                 android:shadowDy="20.0"
-                android:shadowColor="@color/light_gray"
-
-                />
+                android:shadowColor="@color/light_gray" />
 
             <!-- 책 -->
             <androidx.recyclerview.widget.RecyclerView
@@ -41,8 +39,9 @@
                 android:layout_margin="20dp"
                 android:layout_weight="1" />
 
-
+            <!-- 검색창 이동 버튼 -->
             <Button
+                android:id="@+id/button_search"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/button_search"

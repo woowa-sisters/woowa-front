@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class BookSearchActivity : AppCompatActivity() {
 
-    private val binding = ActivityBookSearchBinding.inflate(layoutInflater)
+    private val binding by lazy { ActivityBookSearchBinding.inflate(layoutInflater) }
     private val apiBookService = apiBookService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
