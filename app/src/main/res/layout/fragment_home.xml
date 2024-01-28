@@ -32,22 +32,14 @@
 
                 />
 
-            <!-- 책 가로 리사이클러뷰-->
-            <LinearLayout
+            <!-- 책 -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_mainbook"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <!-- 사실 vertical인지 horizontal인지 모르겠음 돌려봐야 알 듯-->
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview_mainbook"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_margin="20dp"
-                    android:layout_weight="1"/>
-
-            </LinearLayout>
+                android:orientation="horizontal"
+                android:layout_margin="20dp"
+                android:layout_weight="1" />
 
 
             <Button
@@ -59,8 +51,7 @@
                 android:text="      검색       책 제목"
                 android:textSize="17sp"
                 android:textColor="@color/gray"
-                android:gravity="left|center"/>
-
+                android:gravity="left|center" />
 
             <Button
                 android:layout_width="match_parent"
@@ -76,21 +67,14 @@
                 android:background="#00ff0000" />
 
 
-            <!-- 최근에 생성한 모임 가로 리사이클러뷰-->
-            <LinearLayout
+            <!-- 최근에 생성한 모임 -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_group_new"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview_group_new"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="20dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="1"/>
-
-            </LinearLayout>
+                android:layout_margin="20dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -106,21 +90,19 @@
                 android:background="#00ff0000" />
 
 
-            <!-- 곧 마감하는 모임들 가로 리사이클러뷰-->
-            <LinearLayout
+            <!-- 곧 마감하는 모임들 -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_group_closingsoon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_margin="20dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview_group_closingsoon"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="20dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="1"/>
-
-            </LinearLayout>
+            <!-- recyclerView 잘림 방지 빈 공간 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="120dp" />
 
         </LinearLayout>
 

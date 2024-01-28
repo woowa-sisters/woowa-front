@@ -32,13 +32,11 @@ class HomeFragment : Fragment() {
        // binding.recyclerviewMainbook.adapter = MainbookAdapter(mainbookTitleList)
        // binding.recyclerviewMainbook.adapter = MainbookAdapter(mainbookAuthorList)
 
-        binding.recyclerviewGroupNew.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerviewGroupNew.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerviewGroupNew.adapter = GroupAdapter(groupList)
 
-        binding.recyclerviewGroupClosingsoon.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerviewGroupClosingsoon.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerviewGroupClosingsoon.adapter = GroupAdapter(groupList)
-
-
 
         return binding.root
     }
