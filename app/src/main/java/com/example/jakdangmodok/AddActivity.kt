@@ -18,7 +18,15 @@ class AddActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        initButton()
+    }
 
+    private fun initButton() {
+        binding.searchBookAdd.setOnClickListener {
+            // 책 검색 액티비티로 이동
+            val intent = Intent(this, BookSearchActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     // 뒤로가기 버튼
@@ -30,14 +38,6 @@ class AddActivity : AppCompatActivity() {
             }
 
             else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun init() {
-        binding.searchBookAdd.setOnClickListener {
-            // 책 검색 액티비티로 이동
-            val intent = Intent(this, BookSearchActivity::class.java)
-            startActivity(intent)
         }
     }
 

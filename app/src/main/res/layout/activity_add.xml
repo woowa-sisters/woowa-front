@@ -73,16 +73,17 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <SearchView
+            <!-- 검색창 이동 버튼 -->
+            <Button
                 android:id="@+id/search_book_add"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:queryHint="모임 검색"
-                android:iconifiedByDefault="false"
-                android:background="@drawable/search_add_background"
-                android:queryBackground="@null"
-                android:searchIcon="@null" />
+                android:layout_height="48dp"
+                android:background="@drawable/button_search"
+                android:layout_marginTop="20sp"
+                android:text="      검색       책 제목"
+                android:textSize="17sp"
+                android:textColor="@color/gray"
+                android:gravity="left|center" />
 
             <!-- 모임 날짜 -->
             <TextView
