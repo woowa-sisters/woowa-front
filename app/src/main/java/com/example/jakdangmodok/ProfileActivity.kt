@@ -25,6 +25,12 @@ class ProfileActivity : AppCompatActivity() {
             val intent = Intent(this, ProfileNotificationActivity::class.java)
             startActivity(intent)
         }
-    }
 
-}
+        binding.buttonCompleteList.setOnClickListener {
+            val intent = Intent(this, CompleteListActivity::class.java)
+            startActivity(intent)
+        }
+
+        }
+
+    }
