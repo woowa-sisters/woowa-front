@@ -1,10 +1,6 @@
 package com.example.jakdangmodok
 
-import android.util.Log
 import com.google.gson.GsonBuilder
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -19,29 +15,11 @@ class apiBookService {
 
     val bookService = retrofit.create(BookService::class.java)
 
-    public fun getBookSearch(query: String): List<Book> {
-        val call = bookService.getBookSearch(TTBKEY, query, OUTPUT, VERSION)
-        var bookList: List<Book> = listOf()
+    suspend fun getBookSearch(query: String): List<Book> {
+        val bookSearchList = bookService
+            .getBookSearch(TTBKEY, query, OUTPUT, VERSION)
 
-        call.enqueue(object: Callback<BookListDTO> {
-            override fun onResponse(
-                call: Call<BookListDTO>,
-                response: Response<BookListDTO>
-            ) {
-                if (response.isSuccessful) {
-                    Log.e(TAG, "onResponse(search): " + response.body())
-                    bookList = response.body()!!.books
-                } else {
-                    Log.d("BookFragment", "fail: ${response.message()}")
-                }
-            }
-
-            override fun onFailure(call: Call<BookListDTO>, t: Throwable) {
-                Log.d("BookFragment", "onFailure: ${t.message}")
-            }
-        })
-
-        return bookList
+        return bookSearchList.body()!!.books
     }
 
     suspend fun getBookList(): List<Book> {

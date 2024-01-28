@@ -45,7 +45,9 @@ class BookFragment : Fragment() {
     private fun initSearchView(binding: FragmentBookBinding) {
         binding.searchBook.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                binding.recyclerviewBook.adapter = BookAdapter(apiBookService.getBookSearch(query!!))
+                lifecycleScope.launch {
+                    binding.recyclerviewBook.adapter = BookAdapter(apiBookService.getBookSearch(query!!))
+                }
                 return false
             }
 
