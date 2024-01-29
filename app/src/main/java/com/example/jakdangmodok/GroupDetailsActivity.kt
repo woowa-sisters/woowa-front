@@ -46,14 +46,14 @@ class GroupDetailsActivity : AppCompatActivity() {
     }
 
     // 뒤로가기 버튼
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
+            override fun onOptionsItemSelected(item: MenuItem): Boolean {
+                return when (item.itemId) {
+                    android.R.id.home -> {
+                        finish()
+                        true
+                    }
 
-            else -> super.onOptionsItemSelected(item)
+                    else -> super.onOptionsItemSelected(item)
         }
     }
 
