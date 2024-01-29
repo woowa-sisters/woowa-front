@@ -25,6 +25,11 @@ class ProfileActivity : AppCompatActivity() {
             val intent = Intent(this, ProfileNotificationActivity::class.java)
             startActivity(intent)
         }
+
+        binding.buttonApplyGroup.setOnClickListener {
+            val intent = Intent(this, ApplyGroupActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }
