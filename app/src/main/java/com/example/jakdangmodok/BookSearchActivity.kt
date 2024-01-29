@@ -32,7 +32,7 @@ class BookSearchActivity : AppCompatActivity() {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     lifecycleScope.launch {
-                        binding.recyclerviewSearch.adapter = BookAdapter(apiBookService.getBookSearch(query!!))
+                        binding.recyclerviewSearch.adapter = BookSearchAdapter(apiBookService.getBookSearch(query!!))
                     }
                     return false
                 }
