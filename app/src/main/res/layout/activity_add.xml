@@ -80,10 +80,71 @@
                 android:layout_height="48dp"
                 android:background="@drawable/button_search"
                 android:layout_marginTop="20sp"
-                android:text="      검색       책 제목"
+                android:text="책 추가"
                 android:textSize="17sp"
                 android:textColor="@color/gray"
-                android:gravity="left|center" />
+                android:gravity="center" />
+
+            <!-- 책 정보 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/item_book_background"
+                android:elevation="5dp"
+                android:visibility="gone"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <!-- 책 이미지 -->
+                <ImageView
+                    android:id="@+id/book_cover_add"
+                    android:layout_width="110dp"
+                    android:layout_height="152dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher_background"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                <!-- 책 정보 -->
+                <TextView
+                    android:id="@+id/book_title_add"
+                    android:layout_width="170sp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="17dp"
+                    android:text="Title"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    app:layout_constraintTop_toTopOf="@id/book_cover_add"
+                    app:layout_constraintStart_toEndOf="@id/book_cover_add"/>
+
+                <TextView
+                    android:id="@+id/book_author_add"
+                    android:layout_width="190sp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="17dp"
+                    android:text="Author"
+                    android:textSize="16dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    app:layout_constraintTop_toBottomOf="@id/book_title_add"
+                    app:layout_constraintStart_toEndOf="@id/book_cover_add" />
+
+                <TextView
+                    android:id="@+id/book_genre_add"
+                    android:layout_width="190sp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="17dp"
+                    android:text="genre"
+                    android:textSize="16dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    app:layout_constraintTop_toBottomOf="@id/book_author_add"
+                    app:layout_constraintStart_toEndOf="@id/book_cover_add" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- 모임 날짜 -->
             <TextView
