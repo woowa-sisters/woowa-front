@@ -87,6 +87,7 @@
 
             <!-- 책 정보 -->
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/book_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"

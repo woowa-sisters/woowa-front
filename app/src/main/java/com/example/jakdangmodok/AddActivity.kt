@@ -14,11 +14,14 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        init()
+        initButton()
+    }
+
+    private fun init() {
         setSupportActionBar(binding.toolbarAdd)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
-        initButton()
     }
 
     private fun initButton() {
