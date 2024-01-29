@@ -27,7 +27,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.buttonCompleteList.setOnClickListener {
-            val intent = Intent(this, CompleteListActivity::class.java)
+            val intent = Intent(this, CompleteGroupActivity::class.java)
             startActivity(intent)
         }
 

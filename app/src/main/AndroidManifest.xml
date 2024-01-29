@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Jakdangmodok"
         tools:targetApi="31">
         <activity
-            android:name=".CompleteListActivity"
+            android:name=".CompleteGroupActivity"
             android:exported="false" />
         <activity
             android:name=".GroupDetailsActivity"
