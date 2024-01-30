@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.jakdangmodok.databinding.ActivityAddBinding
 
@@ -37,6 +39,9 @@ class AddActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbarAdd)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        binding.recyclerviewGenreAdd.layoutManager = GridLayoutManager(this, 3)
+        binding.recyclerviewGenreAdd.adapter = GenreAdapter()
     }
 
     private fun initButton() {
