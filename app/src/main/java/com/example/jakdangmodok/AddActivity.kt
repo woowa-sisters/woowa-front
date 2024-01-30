@@ -36,10 +36,15 @@ class AddActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        // toolbar
         setSupportActionBar(binding.toolbarAdd)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        // fee
+        binding.edittextGroupFee.addTextChangedListener(PriceTextWatcher(binding.edittextGroupFee))
+
+        // genre button
         binding.recyclerviewGenreAdd.layoutManager = GridLayoutManager(this, 3)
         binding.recyclerviewGenreAdd.adapter = GenreAdapter()
     }
