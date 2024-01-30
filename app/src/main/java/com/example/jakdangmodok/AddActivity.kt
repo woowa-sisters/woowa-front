@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.init
 import com.example.jakdangmodok.databinding.ActivityAddBinding
 
 class AddActivity : AppCompatActivity() {
@@ -31,11 +32,11 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        init()
+        initView()
         initButton()
     }
 
-    private fun init() {
+    private fun initView() {
         // toolbar
         setSupportActionBar(binding.toolbarAdd)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -50,10 +51,32 @@ class AddActivity : AppCompatActivity() {
     }
 
     private fun initButton() {
+        // 책 검색 액티비티로 이동
         binding.searchBookAdd.setOnClickListener {
-            // 책 검색 액티비티로 이동
             val intent = Intent(this, BookSearchActivity::class.java)
             resultLauncher.launch(intent)
+        }
+
+        // 인원 수 조절 버튼
+        binding.buttonMinus.setOnClickListener() {
+            var num = binding.groupMemberCount.text.toString().toInt()
+            if (num > 1) {
+                num -= 1
+                binding.groupMemberCount.text = num.toString()
+            }
+        }
+        binding.buttonPlus.setOnClickListener() {
+            var num = binding.groupMemberCount.text.toString().toInt()
+            if (num < 20) {
+                num += 1
+                binding.groupMemberCount.text = num.toString()
+            }
+        }
+
+        // 등록 버튼
+        binding.buttonAdd.setOnClickListener() {
+            //val intent = Intent(this, GroupDetailsActivity::class.java)
+            //startActivity(intent)
         }
     }
 

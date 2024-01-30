@@ -62,7 +62,7 @@
                 android:padding="10dp"
                 android:textColor="@color/gray"
                 android:textSize="15sp"
-                android:maxLength="15"
+                android:maxLength="25"
                 android:maxLines="1" />
 
             <!-- 책 선택 -->
