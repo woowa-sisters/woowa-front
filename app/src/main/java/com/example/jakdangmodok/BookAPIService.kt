@@ -24,15 +24,23 @@ class BookAPIService {
 
     suspend fun getBookList(): List<Book> {
         val bookList = bookService
-            .getBookList(TTBKEY, QUERYTYPE, SEARCHTARGET, OUTPUT, VERSION)
+            .getBookList(TTBKEY, QUERY_TYPE, SEARCH_TARGET, OUTPUT, VERSION)
 
         return bookList.body()!!.books
     }
 
+    suspend fun getBookDetail(itemid: String): Book {
+        val bookDetail = bookService
+            .getBookDetail(TTBKEY, itemid, ITEM_ID_TYPE, OUTPUT, VERSION)
+
+        return bookDetail.body()!!.books[0]
+    }
+
     private companion object{
         private const val TTBKEY = "ttbnaahyin02016001"
-        private const val QUERYTYPE = "ItemNewSpecial"
-        private const val SEARCHTARGET = "Book"
+        private const val QUERY_TYPE = "ItemNewSpecial"
+        private const val SEARCH_TARGET = "Book"
+        private const val ITEM_ID_TYPE = "ISBN13"
         private const val OUTPUT = "JS"
         private const val VERSION = "20131101"
         private const val TAG = "BookSearchActivity"

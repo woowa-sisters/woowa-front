@@ -33,6 +33,6 @@ interface BookService {
         @Query("itemIdType") itemidtype: String,
         @Query("Output") output: String,
         @Query("Version") version: String
-    ): Response<Book>
+    ): Response<BookListDTO>
 
 }
