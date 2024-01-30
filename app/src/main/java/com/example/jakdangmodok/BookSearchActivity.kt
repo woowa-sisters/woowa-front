@@ -2,6 +2,7 @@ package com.example.jakdangmodok
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.SearchView
 import androidx.lifecycle.lifecycleScope
@@ -32,7 +33,7 @@ class BookSearchActivity : AppCompatActivity() {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     lifecycleScope.launch {
-                        binding.recyclerviewSearch.adapter = BookSearchAdapter(apiBookService.getBookSearch(query!!))
+                        binding.recyclerviewSearch.adapter = BookSearchAdapter(apiBookService.getBookSearch(query!!), this@BookSearchActivity)
                     }
                     return false
                 }
@@ -42,6 +43,16 @@ class BookSearchActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    fun setBookInfo(book: Book) {
+        intent.putExtra("isbn", book.isbn)
+        intent.putExtra("title", book.title)
+        intent.putExtra("author", book.author)
+        intent.putExtra("categoryName", book.categoryName)
+        intent.putExtra("cover", book.cover)
+        setResult(RESULT_OK, intent)
+        finish()
     }
 
     // 뒤로가기 버튼

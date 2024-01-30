@@ -1,5 +1,7 @@
 package com.example.jakdangmodok
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -34,7 +36,7 @@ class BookAdapter(val bookList: List<Book>): RecyclerView.Adapter<RecyclerView.V
 }
 
 class BookSearchViewHolder(val binding: ItemBookInfoBinding): RecyclerView.ViewHolder(binding.root)
-class BookSearchAdapter(val bookList: List<Book>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BookSearchAdapter(val bookList: List<Book>, val parent: BookSearchActivity): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount(): Int = bookList.size
 
@@ -54,6 +56,10 @@ class BookSearchAdapter(val bookList: List<Book>): RecyclerView.Adapter<Recycler
             .error(defaultImage)
             .fallback(defaultImage)
             .into(binding.bookCoverInfo)
+
+        binding.root.setOnClickListener() {
+            parent.setBookInfo(bookList[position])
+        }
     }
 
 }

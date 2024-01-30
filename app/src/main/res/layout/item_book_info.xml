@@ -23,7 +23,7 @@
     <!-- 책 정보 -->
     <TextView
         android:id="@+id/book_title_info"
-        android:layout_width="170sp"
+        android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_margin="17dp"
         android:text="Title"
@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/book_author_info"
-        android:layout_width="190sp"
+        android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_margin="17dp"
         android:text="Author"
@@ -48,7 +48,7 @@
 
     <TextView
         android:id="@+id/book_genre_info"
-        android:layout_width="190sp"
+        android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_margin="17dp"
         android:text="Author"
