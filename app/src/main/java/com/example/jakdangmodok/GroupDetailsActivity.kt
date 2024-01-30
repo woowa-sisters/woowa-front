@@ -29,11 +29,16 @@ class GroupDetailsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         initNaverMap()
+        initView()
+    }
 
-        // 모임명
-        intent.getStringExtra("groupId")?.let {
-            binding.groupTitle.text = it
-        }
+    private fun initView() {
+        binding.groupTitle.text = intent.getStringExtra("groupName")
+        //binding.bookTitle.text = intent.getStringExtra("bookTitle")
+        binding.dateDetail.text = intent.getStringExtra("date")
+        //binding.placeDetail.text = intent.getStringExtra("place")
+        binding.introductionDetail.text = intent.getStringExtra("introduction")
+        binding.feeDetail.text = intent.getStringExtra("fee")
 
         // 멤버 소개
         binding.recyclerviewMember.layoutManager = LinearLayoutManager(this)
