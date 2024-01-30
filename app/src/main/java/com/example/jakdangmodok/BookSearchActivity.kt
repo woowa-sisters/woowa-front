@@ -2,7 +2,6 @@ package com.example.jakdangmodok
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.widget.SearchView
 import androidx.lifecycle.lifecycleScope
@@ -13,7 +12,7 @@ import kotlinx.coroutines.launch
 class BookSearchActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityBookSearchBinding.inflate(layoutInflater) }
-    private val apiBookService = apiBookService()
+    private val bookAPIService = BookAPIService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +32,7 @@ class BookSearchActivity : AppCompatActivity() {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     lifecycleScope.launch {
-                        binding.recyclerviewSearch.adapter = BookSearchAdapter(apiBookService.getBookSearch(query!!), this@BookSearchActivity)
+                        binding.recyclerviewSearch.adapter = BookSearchAdapter(bookAPIService.getBookSearch(query!!), this@BookSearchActivity)
                     }
                     return false
                 }
