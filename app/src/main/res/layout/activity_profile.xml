@@ -175,6 +175,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/button_my_group"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="내가 만든 모임"
