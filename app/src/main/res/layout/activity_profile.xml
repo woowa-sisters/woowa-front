@@ -181,6 +181,7 @@
         android:text="내가 만든 모임"
         android:gravity="left|center"/>
     <Button
+        android:id="@+id/button_apply_group"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="신청 모임 목록"
