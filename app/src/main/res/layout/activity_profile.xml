@@ -7,7 +7,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:padding="18dp">
+    android:paddingRight="18dp"
+    android:paddingLeft="18dp">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_profile"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/toolbar_profile_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="회원 정보"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
