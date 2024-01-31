@@ -28,6 +28,9 @@
             android:name=".MyGroupActivity"
             android:exported="false" />
         <activity
+            android:name=".CompleteGroupActivity"
+            android:exported="false" />
+        <activity
             android:name=".GroupDetailsActivity"
             android:exported="false" />
         <activity
