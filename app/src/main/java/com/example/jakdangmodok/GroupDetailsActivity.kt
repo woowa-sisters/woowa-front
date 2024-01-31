@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
@@ -52,6 +53,10 @@ class GroupDetailsActivity : AppCompatActivity() {
         binding.recyclerviewComment.adapter = CommentAdapter(commentList)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
     @SuppressLint("ClickableViewAccessibility")
     private fun initNaverMap() {
         NaverMapSdk.getInstance(this).client =
