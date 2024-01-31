@@ -25,6 +25,9 @@
             android:name=".BookSearchActivity"
             android:exported="false" />
         <activity
+            android:name=".MyGroupActivity"
+            android:exported="false" />
+        <activity
             android:name=".GroupDetailsActivity"
             android:exported="false" />
         <activity
