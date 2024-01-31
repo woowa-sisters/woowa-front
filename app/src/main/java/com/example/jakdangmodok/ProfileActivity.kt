@@ -28,8 +28,19 @@ class ProfileActivity : AppCompatActivity() {
 
         binding.buttonApplyGroup.setOnClickListener {
             val intent = Intent(this, ApplyGroupActivity::class.java)
+
+        binding.buttonMyGroup.setOnClickListener {
+            val intent = Intent(this, MyGroupActivity::class.java)
+            
             startActivity(intent)
         }
     }
 
-}
+        binding.buttonCompleteList.setOnClickListener {
+            val intent = Intent(this, CompleteGroupActivity::class.java)
+            startActivity(intent)
+        }
+
+        }
+
+    }
