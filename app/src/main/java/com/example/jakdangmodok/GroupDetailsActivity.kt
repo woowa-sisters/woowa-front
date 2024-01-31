@@ -66,9 +66,6 @@ class GroupDetailsActivity : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun initNaverMap() {
-        NaverMapSdk.getInstance(this).client =
-            NaverMapSdk.NaverCloudPlatformClient(ID)
-
         binding.mapView.setOnTouchListener { view, motionEvent ->
             when (motionEvent.action) {
                 MotionEvent.ACTION_DOWN -> {
@@ -109,10 +106,6 @@ class GroupDetailsActivity : AppCompatActivity() {
 
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    companion object {
-        private const val ID = "sjrtcbmv0g"
     }
 
 }
