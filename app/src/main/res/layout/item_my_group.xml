@@ -12,7 +12,7 @@
 
     <!-- 구독 버튼 -->
     <ImageButton
-        android:id="@+id/btn_subscribe_book"
+        android:id="@+id/btn_my_group_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/outline_favorite"
