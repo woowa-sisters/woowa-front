@@ -35,12 +35,12 @@
     <FrameLayout
         android:id="@+id/sign_up_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/top_sign_up"
-        app:layout_constraintBottom_toTopOf="@id/btn_continue_sign_up" />
+        app:layout_constraintBottom_toTopOf="@id/btn_sign_up" />
 
     <Button
-        android:id="@+id/btn_continue_sign_up"
+        android:id="@+id/btn_sign_up"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/button_greenbackground"
