@@ -8,5 +8,6 @@
     <string name="select_genre">관심 장르를 선택해주세요</string>
     <string name="continue_button">계속</string>
     <string name="complete_button">완료</string>
+    <string name="web_client_id">105352084548-k0ct890am5lv8sglun09d1frk3q29oe5.apps.googleusercontent.com</string>
     <string name="google_client_id">105352084548-ur4o8vhaavb4rp1age8m7scj2i4mblal.apps.googleusercontent.com</string>
 </resources>

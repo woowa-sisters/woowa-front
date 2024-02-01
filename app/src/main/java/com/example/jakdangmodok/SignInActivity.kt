@@ -4,46 +4,46 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.jakdangmodok.databinding.ActivitySignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.api.Scope
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SignInActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivitySignInBinding.inflate(layoutInflater) }
+
+    private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val googleSignInClient: GoogleSignInClient by lazy { getGoogleClient() }
-    private val googleAuthLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+    private lateinit var googleAuthLauncher: ActivityResultLauncher<Intent>
 
-        try {
-            val account = task.getResult(ApiException::class.java)
-
-            // 이름, 이메일 등이 필요하다면 아래와 같이 account를 통해 각 메소드를 불러올 수 있다.
-            val userName = account.givenName
-            val serverAuth = account.serverAuthCode
-
-            moveSignUpActivity()
-
-        } catch (e: ApiException) {
-            Log.e(SignInActivity::class.java.simpleName, e.stackTraceToString())
-        }
-    }
-
+    private var tokenId: String? = null
+    private var email: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        setGoogleAuthLauncher()
         addClickListeners()
     }
 
     private fun addClickListeners() {
         binding.llSignIn.setOnClickListener {
-            requestGoogleLogin()
+            CoroutineScope(Dispatchers.IO).launch {
+                requestGoogleLogin()
+            }
         }
     }
 
@@ -55,18 +55,56 @@ class SignInActivity : AppCompatActivity() {
 
     private fun getGoogleClient(): GoogleSignInClient {
         val googleSignInOption = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestScopes(Scope("https://www.googleapis.com/auth/pubsub"))
-            .requestServerAuthCode(getString(R.string.google_client_id)) // string 파일에 저장해둔 client id 를 이용해 server authcode를 요청한다.
-            .requestEmail() // 이메일도 요청할 수 있다.
+            .requestIdToken(getString(R.string.web_client_id))
+            .requestEmail()
             .build()
 
-        return GoogleSignIn.getClient(this, googleSignInOption)
+        return GoogleSignIn.getClient(this@SignInActivity, googleSignInOption)
     }
+
+    private fun setGoogleAuthLauncher() {
+        googleAuthLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult(), ActivityResultCallback { result ->
+                Log.e(TAG, "resultCode : ${result.resultCode}")
+                Log.e(TAG, "result : $result")
+                if (result.resultCode == RESULT_OK) {
+                    val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                    try {
+                        val account = task.getResult(ApiException::class.java)
+                        tokenId = account.idToken
+                        if (tokenId != null && tokenId != "") {
+                            val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
+                            firebaseAuth.signInWithCredential(credential)
+                                .addOnCompleteListener {
+                                    if (firebaseAuth.currentUser != null) {
+                                        val user: FirebaseUser = firebaseAuth.currentUser!!
+                                        email = user.email.toString()
+                                        Log.e(TAG, "email : $email")
+                                        val googleSignInToken = account.idToken ?: ""
+                                        if (googleSignInToken != "") {
+                                            Log.e(TAG, "googleSignInToken : $googleSignInToken")
+                                        } else {
+                                            Log.e(TAG, "googleSignInToken이 null")
+                                        }
+                                    }
+                                }
+                        }
+                    }   catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+        )
+    }
+  /*
 
     private fun moveSignUpActivity() {
         val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
         finish()
     }
-
+*/
+    companion object {
+        private const val TAG = "SignInActivity"
+    }
 }
