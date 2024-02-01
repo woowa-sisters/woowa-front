@@ -2,6 +2,7 @@ package com.example.jakdangmodok
 
 import android.R
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import kotlinx.coroutines.launch
 
 class BookFragment : Fragment() {
 
+    private val naverMapAPIService = NaverMapAPIService()
     private val bookAPIService = BookAPIService()
     private val filterList: Array<String> = arrayOf("최신순", "마감순", "거리순")
 
@@ -37,6 +39,8 @@ class BookFragment : Fragment() {
             binding.recyclerviewBook.layoutManager = LinearLayoutManager(activity)
             binding.recyclerviewBook.adapter = BookAdapter(bookAPIService.getBookList())
             binding.spinnerBook.adapter = filterAdapter
+
+            naverMapAPIService.getMapSearch2("서울시")
         }
 
         return binding.root
