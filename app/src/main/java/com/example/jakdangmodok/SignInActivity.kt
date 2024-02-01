@@ -67,8 +67,10 @@ class SignInActivity : AppCompatActivity() {
             ActivityResultContracts.StartActivityForResult(), ActivityResultCallback { result ->
                 Log.e(TAG, "resultCode : ${result.resultCode}")
                 Log.e(TAG, "result : $result")
+
                 if (result.resultCode == RESULT_OK) {
                     val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+
                     try {
                         val account = task.getResult(ApiException::class.java)
                         tokenId = account.idToken
@@ -80,12 +82,15 @@ class SignInActivity : AppCompatActivity() {
                                         val user: FirebaseUser = firebaseAuth.currentUser!!
                                         email = user.email.toString()
                                         Log.e(TAG, "email : $email")
+
                                         val googleSignInToken = account.idToken ?: ""
                                         if (googleSignInToken != "") {
                                             Log.e(TAG, "googleSignInToken : $googleSignInToken")
                                         } else {
                                             Log.e(TAG, "googleSignInToken이 null")
                                         }
+
+                                        moveSignUpActivity()
                                     }
                                 }
                         }
@@ -96,14 +101,13 @@ class SignInActivity : AppCompatActivity() {
             }
         )
     }
-  /*
 
     private fun moveSignUpActivity() {
         val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
         finish()
     }
-*/
+
     companion object {
         private const val TAG = "SignInActivity"
     }
