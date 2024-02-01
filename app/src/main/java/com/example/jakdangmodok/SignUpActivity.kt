@@ -3,9 +3,9 @@ package com.example.jakdangmodok
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class SignupActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
+        setContentView(R.layout.activity_sign_up)
     }
 }

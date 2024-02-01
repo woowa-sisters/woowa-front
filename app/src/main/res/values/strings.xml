@@ -2,5 +2,7 @@
     <string name="app_name">작당모독</string>
     <string name="new_comment">NEW</string>
     <string name="continue_with_google">Google로 계속하기</string>
+    <string name="sign_up">회원가입</string>
+    <string name="continue_button">계속</string>
     <string name="google_client_id">105352084548-ur4o8vhaavb4rp1age8m7scj2i4mblal.apps.googleusercontent.com</string>
 </resources>
