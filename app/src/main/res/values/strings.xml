@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">작당모독</string>
     <string name="new_comment">NEW</string>
+    <string name="google_client_id">105352084548-ur4o8vhaavb4rp1age8m7scj2i4mblal.apps.googleusercontent.com</string>
 </resources>
