@@ -5,6 +5,7 @@
     <string name="sign_up">회원가입</string>
     <string name="input_username">닉네임을 입력해주세요</string>
     <string name="username_rule">3글자 이상의 닉네임을 만드세요!</string>
+    <string name="select_genre">관심 장르를 선택해주세요</string>
     <string name="continue_button">계속</string>
     <string name="google_client_id">105352084548-ur4o8vhaavb4rp1age8m7scj2i4mblal.apps.googleusercontent.com</string>
 </resources>

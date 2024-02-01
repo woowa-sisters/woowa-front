@@ -6,22 +6,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="30sp"
-    tools:context=".UsernameFragment">
+    tools:context=".SelectGenreFragment">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30sp"
-        android:text="@string/input_username"
+        android:layout_marginBottom="35sp"
+        android:text="@string/select_genre"
         android:textColor="@color/gray"/>
 
-
-    <EditText
+    <!-- 장르 버튼 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_genre_sign_up"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/username_rule"
-        android:singleLine="true"
-        android:maxLength="10"
-        android:includeFontPadding="true" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
