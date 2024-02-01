@@ -1,5 +1,6 @@
 package com.example.jakdangmodok
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,7 +26,7 @@ class SignInActivity : AppCompatActivity() {
             val userName = account.givenName
             val serverAuth = account.serverAuthCode
 
-            //moveSignUpActivity()
+            moveSignUpActivity()
 
         } catch (e: ApiException) {
             Log.e(SignInActivity::class.java.simpleName, e.stackTraceToString())
@@ -60,6 +61,12 @@ class SignInActivity : AppCompatActivity() {
             .build()
 
         return GoogleSignIn.getClient(this, googleSignInOption)
+    }
+
+    private fun moveSignUpActivity() {
+        val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 }
