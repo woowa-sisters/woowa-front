@@ -216,6 +216,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/edt_fee"
                     android:layout_width="0dp"
                     android:layout_weight="75"
                     android:layout_height="wrap_content"
