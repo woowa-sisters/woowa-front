@@ -140,6 +140,7 @@
                     android:textColor="@color/gray" />
 
                 <TextView
+                    android:id="@+id/textview_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="날짜 및 시간"
