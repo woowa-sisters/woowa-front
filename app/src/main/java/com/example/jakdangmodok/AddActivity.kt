@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.TextView
 import com.example.jakdangmodok.databinding.ActivityAddBinding
 
 class AddActivity : AppCompatActivity() {
@@ -19,6 +21,14 @@ class AddActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         initButton()
+
+        // 툴바 이름 변경
+        val toolbarTitle = findViewById<TextView>(R.id.toolbar_add_title)
+        toolbarTitle.text = "모임 수정하기"
+
+        // 버튼 텍스트 변경
+        val buttonAdd = findViewById<Button>(R.id.button_add)
+        buttonAdd.text = "모임 수정하기"
     }
 
     private fun initButton() {

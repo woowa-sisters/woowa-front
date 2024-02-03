@@ -81,12 +81,18 @@ class GroupDetailsActivity : AppCompatActivity() {
         }
     }
 
-    // 뒤로가기 버튼
             override fun onOptionsItemSelected(item: MenuItem): Boolean {
                 return when (item.itemId) {
+                    // 뒤로가기 버튼
                     android.R.id.home -> {
                         finish()
                         true
+                    }
+                    // 모임 수정 버튼 클릭 시 AddActivity로 전환
+                    R.id.menu_correction -> {
+                        val intent = Intent(this, AddActivity::class.java)
+                        startActivity(intent)
+                        return true
                     }
 
                     else -> super.onOptionsItemSelected(item)
