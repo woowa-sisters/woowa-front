@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.jakdangmodok.databinding.ItemNotificationBinding
 
 class NotificationAdapter {
-    // 어댑터 파일 작성하기
+    // RecyclerView 아이템 크기
 
 
 
