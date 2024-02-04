@@ -14,6 +14,6 @@ interface NaverMapService {
         @Query("query") query: String,      // 검색어
         @Header("X-Naver-Client-Id") clientId: String = "IEVypWnAYI9BtTLNGSFw",    // 검색 클라이언트 아이디
         @Header("X-Naver-Client-Secret") clientSecret: String = "jltSefe3KN",     // 검색 클라이언트 시크릿
-    ): Call<String>
+    ): Call<PlaceListDTO>
 
 }
