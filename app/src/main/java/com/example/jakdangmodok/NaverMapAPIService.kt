@@ -25,26 +25,10 @@ class NaverMapAPIService {
 
     val mapService = retrofit.create(NaverMapService::class.java)
 
-    fun getMapSearch(query: String): String? {
+    suspend fun getMapSearch(query: String): List<Place> {
         val mapSearchList = mapService.getMapSearch(query)
 
-        mapSearchList.enqueue(object: retrofit2.Callback<String> {
-            override fun onResponse(call: retrofit2.Call<String>, response: Response<String>) {
-                if (response.isSuccessful) {
-                    val result = response.body()
-                    Log.e("result", result.toString())
-                } else {
-                    Log.e("error", response.code().toString())
-                    Log.e("error", response.toString())
-                }
-            }
-
-            override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
-                Log.e("error", t.toString())
-            }
-        })
-
-        return "ss"
+        return mapSearchList.body()!!.places
     }
 
 }
