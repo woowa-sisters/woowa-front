@@ -80,7 +80,7 @@ class AddActivity : AppCompatActivity() {
             intent.putExtra("groupName", binding.edittextGroupName.text.toString())
             intent.putExtra("bookInfo", isbn!!)
             intent.putExtra("date", binding.datepickerAdd.dayOfMonth.toString() + "일")
-            intent.putExtra("place", binding.searchPlaceAdd.query.toString())
+            //intent.putExtra("place", binding.searchPlaceAdd.query.toString())
             intent.putExtra("memberCount", binding.groupMemberCount.text.toString())
             intent.putExtra("introduction", binding.edittextGroupIntro.text.toString())
             intent.putExtra("fee", binding.edittextGroupFee.text.toString())

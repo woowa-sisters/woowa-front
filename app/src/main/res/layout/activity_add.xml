@@ -75,7 +75,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <!-- 검색창 이동 버튼 -->
+            <!-- 책 검색창 이동 버튼 -->
             <Button
                 android:id="@+id/search_book_add"
                 android:layout_width="match_parent"
@@ -177,16 +177,17 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <SearchView
+            <!-- 장소 검색창 이동 버튼 -->
+            <Button
                 android:id="@+id/search_place_add"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:queryHint="검색"
-                android:iconifiedByDefault="false"
-                android:background="@drawable/search_add_background"
-                android:queryBackground="@null"
-                android:searchIcon="@null" />
+                android:layout_height="48dp"
+                android:background="@drawable/button_search"
+                android:layout_marginTop="20sp"
+                android:text="장소 추가"
+                android:textSize="17sp"
+                android:textColor="@color/gray"
+                android:gravity="center" />
 
             <!-- 인원 수 -->
             <androidx.constraintlayout.widget.ConstraintLayout
