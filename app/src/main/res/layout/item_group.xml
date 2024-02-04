@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
     android:background="@drawable/item_book_background"
-    android:elevation="10dp"
+    android:elevation="5dp"
     app:layout_constrainedHeight="true"
     app:layout_constraintBottom_toBottomOf="parent">
 
@@ -41,12 +41,14 @@
     <!-- 모임 정보 -->
     <TextView
         android:id="@+id/group_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150sp"
+        android:layout_height="25sp"
         android:layout_marginLeft="17dp"
         android:text="모임명"
         android:textSize="17dp"
         android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end"
         app:layout_constraintTop_toTopOf="@id/group_image_card"
         app:layout_constraintStart_toEndOf="@id/group_image_card"/>
 
@@ -69,6 +71,9 @@
         android:layout_marginLeft="5dp"
         android:text="장소"
         android:textSize="12dp"
+        android:maxLines="1"
+        android:maxLength="30"
+        android:ellipsize="end"
         app:layout_constraintTop_toBottomOf="@id/group_title"
         app:layout_constraintStart_toEndOf="@id/group_place_icon" />
 
@@ -91,6 +96,9 @@
         android:layout_marginLeft="5dp"
         android:text="시간"
         android:textSize="12dp"
+        android:maxLines="1"
+        android:maxLength="30"
+        android:ellipsize="end"
         app:layout_constraintTop_toBottomOf="@id/group_title"
         app:layout_constraintStart_toEndOf="@id/group_time_icon" />
 

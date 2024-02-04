@@ -34,7 +34,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -61,7 +61,9 @@
                 android:hint="3글자 이상의 모임명"
                 android:padding="10dp"
                 android:textColor="@color/gray"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:maxLength="25"
+                android:maxLines="1" />
 
             <!-- 책 선택 -->
             <TextView
@@ -73,16 +75,80 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <SearchView
+            <!-- 책 검색창 이동 버튼 -->
+            <Button
                 android:id="@+id/search_book_add"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:queryHint="모임 검색"
-                android:iconifiedByDefault="false"
-                android:background="@drawable/search_add_background"
-                android:queryBackground="@null"
-                android:searchIcon="@null" />
+                android:layout_height="48dp"
+                android:background="@drawable/button_search"
+                android:layout_marginTop="20sp"
+                android:text="책 추가"
+                android:textSize="17sp"
+                android:textColor="@color/gray"
+                android:gravity="center" />
+
+            <!-- 책 정보 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/book_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/item_book_background"
+                android:elevation="5dp"
+                android:visibility="gone"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <!-- 책 이미지 -->
+                <ImageView
+                    android:id="@+id/book_cover_add"
+                    android:layout_width="110dp"
+                    android:layout_height="152dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher_background"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                <!-- 책 정보 -->
+                <TextView
+                    android:id="@+id/book_title_add"
+                    android:layout_width="170sp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="17dp"
+                    android:text="Title"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    app:layout_constraintTop_toTopOf="@id/book_cover_add"
+                    app:layout_constraintStart_toEndOf="@id/book_cover_add"/>
+
+                <TextView
+                    android:id="@+id/book_author_add"
+                    android:layout_width="190sp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="17dp"
+                    android:text="Author"
+                    android:textSize="16dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    app:layout_constraintTop_toBottomOf="@id/book_title_add"
+                    app:layout_constraintStart_toEndOf="@id/book_cover_add" />
+
+                <TextView
+                    android:id="@+id/book_genre_add"
+                    android:layout_width="190sp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="17dp"
+                    android:text="genre"
+                    android:textSize="16dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    app:layout_constraintTop_toBottomOf="@id/book_author_add"
+                    app:layout_constraintStart_toEndOf="@id/book_cover_add" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- 모임 날짜 -->
             <TextView
@@ -111,16 +177,17 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <SearchView
+            <!-- 장소 검색창 이동 버튼 -->
+            <Button
                 android:id="@+id/search_place_add"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:queryHint="검색"
-                android:iconifiedByDefault="false"
-                android:background="@drawable/search_add_background"
-                android:queryBackground="@null"
-                android:searchIcon="@null" />
+                android:layout_height="48dp"
+                android:background="@drawable/button_search"
+                android:layout_marginTop="20sp"
+                android:text="장소 추가"
+                android:textSize="17sp"
+                android:textColor="@color/gray"
+                android:gravity="center" />
 
             <!-- 인원 수 -->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -144,8 +211,9 @@
                     android:id="@+id/button_minus"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:text="+"
-                    android:textSize="20sp"
+                    android:text="-"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
                     android:background="@drawable/count_button_background"
                     app:layout_constraintEnd_toStartOf="@id/group_member_count"
                     app:layout_constraintTop_toTopOf="parent"
@@ -168,8 +236,8 @@
                     android:id="@+id/button_plus"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:text="-"
-                    android:textSize="28sp"
+                    android:text="+"
+                    android:textSize="20sp"
                     android:background="@drawable/count_button_background"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -192,6 +260,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:padding="7dp"
                 android:inputType="text|textMultiLine"
                 android:scrollbars="vertical"
                 android:gravity="top|left"
@@ -215,10 +284,12 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/edittext_group_fee"
                     android:layout_width="0dp"
                     android:layout_weight="75"
                     android:layout_height="wrap_content"
                     android:inputType="number"
+                    android:maxLength="9"
                     android:textAlignment="textEnd" />
 
                 <TextView
@@ -241,10 +312,10 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <FrameLayout
-                android:id="@+id/button_container_add"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_genre_add"
                 android:layout_width="match_parent"
-                android:layout_height="0dp" />
+                android:layout_height="wrap_content" />
 
             <!-- 모임 생성 버튼 -->
             <Button
@@ -260,6 +331,6 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

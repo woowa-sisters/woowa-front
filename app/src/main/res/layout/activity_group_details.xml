@@ -18,7 +18,9 @@
             android:id="@+id/toolbar_group_details"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white">
+            android:background="@color/white"
+            app:titleTextColor="@color/green"
+            app:menu="@menu/menu_detail">
 
             <TextView
                 android:id="@+id/toolbar_group_details_title"
@@ -35,6 +37,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
+        android:id="@+id/scrollview_group_details"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -55,6 +58,8 @@
                 android:textColor="@color/gray"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
+
+
 
             <!-- 책 설명 -->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -135,12 +140,14 @@
                     android:textColor="@color/gray" />
 
                 <TextView
+                    android:id="@+id/date_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="날짜 및 시간"
                     android:textColor="@color/gray"
                     android:layout_marginTop="15sp"/>
 
+                <!-- 지도 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -149,13 +156,18 @@
                     android:textStyle="bold"
                     android:layout_marginTop="15sp" />
 
-                <!-- 지도 (임시로 공간만 만들어 놓은 상태. 추후 추가 예정)-->
-                <ImageView
-                    android:id="@+id/map"
+                <fragment
+                    android:id="@+id/naver_map_fragment"
                     android:layout_width="match_parent"
                     android:layout_height="170sp"
                     android:layout_marginTop="15sp"
-                    android:background="@drawable/button_line_rect"/>
+                    android:name="com.naver.maps.map.MapFragment">
+                    <View
+                        android:id="@+id/map_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent" />
+                </fragment>
 
                 <!-- 소개글 -->
                 <TextView
@@ -167,7 +179,7 @@
                     android:layout_marginTop="25sp" />
 
                 <TextView
-                    android:id="@+id/introduction"
+                    android:id="@+id/introduction_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="소개글"
@@ -188,7 +200,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/fee"
+                        android:id="@+id/fee_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
