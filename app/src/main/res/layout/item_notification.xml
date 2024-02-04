@@ -15,6 +15,7 @@
         android:layout_gravity="center_horizontal">
 
         <TextView
+            android:id="@+id/notice_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="xx모임의 승인 요청이 완료되었어요."
@@ -22,6 +23,7 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/notice_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
