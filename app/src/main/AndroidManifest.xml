@@ -17,6 +17,15 @@
             android:name=".PlaceSearchActivity"
             android:exported="false" />
         <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ApplyGroupActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -27,6 +36,12 @@
         </activity>
         <activity
             android:name=".BookSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyGroupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CompleteGroupActivity"
             android:exported="false" />
         <activity
             android:name=".GroupDetailsActivity"

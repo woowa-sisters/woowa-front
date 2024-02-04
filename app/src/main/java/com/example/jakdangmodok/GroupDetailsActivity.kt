@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
@@ -64,6 +65,10 @@ class GroupDetailsActivity : AppCompatActivity() {
         binding.recyclerviewComment.adapter = CommentAdapter(commentList)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
     @SuppressLint("ClickableViewAccessibility")
     private fun initNaverMap() {
         binding.mapView.setOnTouchListener { view, motionEvent ->
@@ -97,14 +102,14 @@ class GroupDetailsActivity : AppCompatActivity() {
     }
 
     // 뒤로가기 버튼
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
+            override fun onOptionsItemSelected(item: MenuItem): Boolean {
+                return when (item.itemId) {
+                    android.R.id.home -> {
+                        finish()
+                        true
+                    }
 
-            else -> super.onOptionsItemSelected(item)
+                    else -> super.onOptionsItemSelected(item)
         }
     }
 
