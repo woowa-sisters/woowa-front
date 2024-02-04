@@ -130,7 +130,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:src="@drawable/baseline_book"
                 android:layout_gravity="center"
                 android:layout_marginRight="5dp" />
@@ -144,39 +144,14 @@
                 android:gravity="center"/>
         </LinearLayout>
 
+        <!-- 관심 장르 -->
 
-        <GridLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_favorite_genre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:rowCount="1"
-            android:columnCount="3">
-
-            <Button
-                android:text="SF"
-                android:textSize="15dp"
-                android:layout_height="34dp"
-                android:textColor="#5f5f5f"
-                android:background="@drawable/button_search"
-                android:layout_columnWeight="1"
-                android:layout_margin="5dp"/>
-            <Button
-                android:text="로맨스"
-                android:textSize="15dp"
-                android:layout_height="34dp"
-                android:textColor="#5f5f5f"
-                android:background="@drawable/button_search"
-                android:layout_columnWeight="1"
-                android:layout_margin="5dp"/>
-            <Button
-                android:text="코미디"
-                android:textSize="15dp"
-                android:layout_height="34dp"
-                android:textColor="#5f5f5f"
-                android:background="@drawable/button_search"
-                android:layout_columnWeight="1"
-                android:layout_margin="5dp"/>
-        </GridLayout>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <View
             android:layout_width="match_parent"

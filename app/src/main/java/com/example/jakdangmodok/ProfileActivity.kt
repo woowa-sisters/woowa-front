@@ -4,6 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.jakdangmodok.databinding.ActivityProfileBinding
 
 class ProfileActivity : AppCompatActivity() {
@@ -13,6 +16,17 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        val rv_favoriteGenre: RecyclerView = findViewById(R.id.recyclerview_favorite_genre)
+
+        val dataList = listOf("SF", "로맨스", "추리") // TODO: 데이터 받아오기
+
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rv_favoriteGenre.layoutManager = layoutManager
+
+        // todo : val adapter = GenreFavoriteAdapter(dataList)
+        // todo : rv_favoriteGenre.adapter = adapter
+
 
         buttonClick()
     }
