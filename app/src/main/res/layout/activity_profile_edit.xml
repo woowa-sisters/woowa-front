@@ -7,23 +7,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_profile_edit"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/top_navigation"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/white">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/toolbar_profile_edit_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="회원 정보 수정"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_profile_edit"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white">
 
-    </androidx.appcompat.widget.Toolbar>
+            <TextView
+                android:id="@+id/toolbar_profile_edit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="회원 정보 수정"
+                android:textColor="@color/green"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <LinearLayout

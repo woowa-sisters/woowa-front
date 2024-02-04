@@ -8,4 +8,5 @@
     <color name="transparent_green">#2626895D</color>
     <color name="red">#FF6060</color>
     <color name="background">#F5F5F5</color>
+    <color name="notification">#5f5f5f</color>
 </resources>

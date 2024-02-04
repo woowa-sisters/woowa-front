@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="모임 승인 요청"
+            android:textColor="@color/notification"
             android:textSize="19dp"
             android:layout_weight="1"/>
 
@@ -44,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="관심 모임"
+            android:textColor="@color/notification"
             android:textSize="19dp"
             android:layout_weight="1"/>
 
@@ -70,6 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="댓글 알림"
+            android:textColor="@color/notification"
             android:textSize="19dp"
             android:layout_weight="1"/>
 
