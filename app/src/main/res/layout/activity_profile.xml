@@ -149,9 +149,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_favorite_genre"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55sp"
             android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_genre_favorite"/>
 
         <View
             android:layout_width="match_parent"
