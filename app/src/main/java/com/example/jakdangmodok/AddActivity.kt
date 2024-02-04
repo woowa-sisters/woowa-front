@@ -58,6 +58,12 @@ class AddActivity : AppCompatActivity() {
             resultLauncher.launch(intent)
         }
 
+        // 장소 검색 액티비티로 이동
+        binding.searchPlaceAdd.setOnClickListener {
+            val intent = Intent(this, PlaceSearchActivity::class.java)
+            startActivity(intent)
+        }
+
         // 인원 수 조절 버튼
         binding.buttonMinus.setOnClickListener() {
             var num = binding.groupMemberCount.text.toString().toInt()
