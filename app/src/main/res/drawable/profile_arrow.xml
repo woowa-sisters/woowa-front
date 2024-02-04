@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/profile_arrow_icon"
+        android:width="35sp"
+        android:height="31.6sp"
+        />
+</layer-list>
