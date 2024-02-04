@@ -140,6 +140,7 @@
                     android:textColor="@color/gray" />
 
                 <TextView
+                    android:id="@+id/date_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="날짜 및 시간"
@@ -178,7 +179,7 @@
                     android:layout_marginTop="25sp" />
 
                 <TextView
-                    android:id="@+id/introduction"
+                    android:id="@+id/introduction_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="소개글"
@@ -199,7 +200,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/fee"
+                        android:id="@+id/fee_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

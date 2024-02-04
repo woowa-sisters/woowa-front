@@ -25,4 +25,14 @@ interface BookService {
         @Query("Version") version: String
     ): Response<BookListDTO>
 
+    // 알라딘 책 상세 api
+    @GET("ItemLookUp.aspx")
+    suspend fun getBookDetail(
+        @Query("TTBKey") ttbkey: String,
+        @Query("ItemId") itemid: String,
+        @Query("itemIdType") itemidtype: String,
+        @Query("Output") output: String,
+        @Query("Version") version: String
+    ): Response<BookListDTO>
+
 }

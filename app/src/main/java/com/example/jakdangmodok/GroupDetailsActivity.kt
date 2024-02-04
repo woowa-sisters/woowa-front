@@ -4,17 +4,22 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.jakdangmodok.databinding.ActivityGroupDetailsBinding
 import com.naver.maps.map.NaverMapSdk
+import kotlinx.coroutines.launch
 
 class GroupDetailsActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityGroupDetailsBinding.inflate(layoutInflater) }
+    private val bookAPIService = BookAPIService()
 
     private val memberList: ArrayList<String> = arrayListOf("김단비", "연두", "우주", "희", "유나", "유진", "유정")
     private val memberWaitingList: ArrayList<String> = arrayListOf("에이든", "피터", "토니", "스티브", "브루스", "토르", "클린트", "나타샤", "와칸다", "페퍼", "헬라")
@@ -29,12 +34,19 @@ class GroupDetailsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        initNaverMap()
-
-        // 모임명
-        intent.getStringExtra("groupId")?.let {
-            binding.groupTitle.text = it
+        lifecycleScope.launch {
+            //setBookInfo(intent.getStringExtra("isbn")!!)
+            initNaverMap()
+            initView()
         }
+    }
+
+    private fun initView() {
+        binding.groupTitle.text = intent.getStringExtra("groupName")
+        binding.dateDetail.text = intent.getStringExtra("date")
+        //binding.placeDetail.text = intent.getStringExtra("place")
+        binding.introductionDetail.text = intent.getStringExtra("introduction")
+        binding.feeDetail.text = intent.getStringExtra("fee")
 
         // 멤버 소개
         binding.recyclerviewMember.layoutManager = LinearLayoutManager(this)
@@ -59,9 +71,6 @@ class GroupDetailsActivity : AppCompatActivity() {
     }
     @SuppressLint("ClickableViewAccessibility")
     private fun initNaverMap() {
-        NaverMapSdk.getInstance(this).client =
-            NaverMapSdk.NaverCloudPlatformClient(ID)
-
         binding.mapView.setOnTouchListener { view, motionEvent ->
             when (motionEvent.action) {
                 MotionEvent.ACTION_DOWN -> {
@@ -81,6 +90,17 @@ class GroupDetailsActivity : AppCompatActivity() {
         }
     }
 
+    private suspend fun setBookInfo(isbn: String) {
+        val book = bookAPIService.getBookDetail(isbn)
+        binding.bookTitle.text = book.title
+        binding.bookAuthor.text = book.author
+        binding.bookPage.text = book.itemPage
+        binding.bookGenre.text = book.categoryName
+        Glide.with(binding.root.context)
+            .load(book.cover)
+            .into(binding.bookImage)
+    }
+
     // 뒤로가기 버튼
             override fun onOptionsItemSelected(item: MenuItem): Boolean {
                 return when (item.itemId) {
@@ -91,10 +111,6 @@ class GroupDetailsActivity : AppCompatActivity() {
 
                     else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    companion object {
-        private const val ID = "sjrtcbmv0g"
     }
 
 }

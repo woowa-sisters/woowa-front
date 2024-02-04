@@ -6,19 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.Glide.init
 import com.example.jakdangmodok.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() {
 
-    private val apiBookService = apiBookService()
+    private val bookAPIService = BookAPIService()
 
     private val mainbookTitleList: ArrayList<String> = arrayListOf("내 인생의 책들", "미래는 저녁8시", "감정의 문화정치")
     private val mainbookAuthorList: ArrayList<String> = arrayListOf("리처드 도킨스", "가운데 사람", "오른쪽 사람")
@@ -42,7 +40,7 @@ class HomeFragment : Fragment() {
 
     private fun initBook(binding: FragmentHomeBinding) {
         lifecycleScope.launch {
-            val bookList = apiBookService.getBookList()
+            val bookList = bookAPIService.getBookList()
             var index = 0
             val maxIndex = bookList.size - 1
             val defaultImage = ContextCompat.getDrawable(binding.root.context, R.drawable.ic_launcher_background)

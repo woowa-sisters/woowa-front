@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class BookSearchActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityBookSearchBinding.inflate(layoutInflater) }
-    private val apiBookService = apiBookService()
+    private val bookAPIService = BookAPIService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,7 @@ class BookSearchActivity : AppCompatActivity() {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     lifecycleScope.launch {
-                        binding.recyclerviewSearch.adapter = BookAdapter(apiBookService.getBookSearch(query!!))
+                        binding.recyclerviewSearch.adapter = BookSearchAdapter(bookAPIService.getBookSearch(query!!), this@BookSearchActivity)
                     }
                     return false
                 }
@@ -42,6 +42,16 @@ class BookSearchActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    fun setBookInfo(book: Book) {
+        intent.putExtra("isbn", book.isbn)
+        intent.putExtra("title", book.title)
+        intent.putExtra("author", book.author)
+        intent.putExtra("categoryName", book.categoryName)
+        intent.putExtra("cover", book.cover)
+        setResult(RESULT_OK, intent)
+        finish()
     }
 
     // 뒤로가기 버튼
