@@ -1,7 +1,9 @@
 package com.example.jakdangmodok
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,5 +44,19 @@ class NotificationActivity : AppCompatActivity() {
             LinearLayoutManager.VERTICAL
         )
         binding.recyclerviewNotification.addItemDecoration(dividerItemDecoration)
+    }
+
+    // 뒤로가기 버튼
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+
+        }
+
     }
 }
