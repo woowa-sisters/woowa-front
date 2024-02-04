@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jakdangmodok.databinding.ItemBookDetailGroupBinding
-import com.example.jakdangmodok.databinding.ItemBookDetailBinding
 
 class BookDetailViewHolder(val binding: ItemBookDetailGroupBinding): RecyclerView.ViewHolder(binding.root) {
     init {
