@@ -21,6 +21,7 @@ import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -100,7 +101,6 @@ class SignInActivity : AppCompatActivity() {
                     try {
                         val account = task.getResult(ApiException::class.java)
                         tokenId = account.idToken
-                        Log.e("dsdfsdfsdfd", account.serverAuthCode!!)
 
                         if (tokenId != null && tokenId != "") {
                             val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
@@ -122,40 +122,28 @@ class SignInActivity : AppCompatActivity() {
                                     }
                                 }
 
-                            loginService.loginGoogle(
-                                "authorization_code",
-                                getString(R.string.web_client_id),
-                                getString(R.string.web_client_secret),
-                                account.serverAuthCode!!
-                            ).enqueue(object : Callback<LoginGoogleResponse> {
-                                override fun onResponse(call: Call<LoginGoogleResponse>, response: Response<LoginGoogleResponse>) {
-                                    if (response.isSuccessful) {
-                                        Log.e(TAG, "success : ${response.body()}")
-                                    } else {
-                                        Log.e(TAG, "fail : ${response.errorBody()?.string()}")
+                            lifecycleScope.launch {
+                                val accessToken = loginService.loginGoogle(
+                                    "authorization_code",
+                                    getString(R.string.web_client_id),
+                                    getString(R.string.web_client_secret),
+                                    account.serverAuthCode!!
+                                ).body()!!.access_token
+
+                                authService.createUser(TokenRequest(accessToken)).enqueue(object : Callback<String> {
+                                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                                        if (response.isSuccessful) {
+                                            Log.e(TAG, "success : ${response.body()}")
+                                        } else {
+                                            Log.e(TAG, "fail : ${response.errorBody()?.string()}")
+                                        }
                                     }
-                                }
 
-                                override fun onFailure(call: Call<LoginGoogleResponse>, t: Throwable) {
-                                    Log.e(TAG, "onFailure : ${t.message}")
-                                }
-                            })
-
-                            /*
-                            authService.createUser(tokenId!!).enqueue(object : Callback<String> {
-                                override fun onResponse(call: Call<String>, response: Response<String>) {
-                                    if (response.isSuccessful) {
-                                        Log.e(TAG, "success : ${response.body()}")
-                                    } else {
-                                        Log.e(TAG, "fail : ${response.errorBody()?.string()}")
+                                    override fun onFailure(call: Call<String>, t: Throwable) {
+                                        Log.e(TAG, "onFailure : ${t.message}")
                                     }
-                                }
-
-                                override fun onFailure(call: Call<String>, t: Throwable) {
-                                    Log.e(TAG, "onFailure : ${t.message}")
-                                }
-                            })
-                            */
+                                })
+                            }
                         }
                     }   catch (e: Exception) {
                         e.printStackTrace()
