@@ -13,6 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Glide.init
 import com.example.jakdangmodok.databinding.ActivityAddBinding
+import com.google.gson.GsonBuilder
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.util.Date
 
 class AddActivity : AppCompatActivity() {
 
@@ -28,6 +33,14 @@ class AddActivity : AppCompatActivity() {
         }
     }
     private var isbn: String? = null
+
+    private val gson = GsonBuilder().setLenient().create()
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl("http://10.0.2.2:4000/")
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .build()
+    val groupService = retrofit.create(GroupService::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +95,26 @@ class AddActivity : AppCompatActivity() {
 
         // 등록 버튼
         binding.buttonAdd.setOnClickListener() {
+
+            if (binding.edittextGroupName.text.toString() == "") {
+                binding.edittextGroupName.error = "모임명을 입력해주세요."
+                return@setOnClickListener
+            }
+
+            //책은 isbn값이 널인지 확인
+            if (isbn == null) {
+                binding.searchBookAdd.error = "책을 추가해주세요."
+                return@setOnClickListener
+            }
+
+            if (binding.edittextGroupIntro.text.toString() == "") {
+                binding.edittextGroupIntro.error = "소개글을 입력해주세요."
+                return@setOnClickListener
+            }
+
+
+
+
             val intent = Intent(this, GroupDetailsActivity::class.java)
             intent.putExtra("groupName", binding.edittextGroupName.text.toString())
             intent.putExtra("bookInfo", isbn!!)
@@ -90,6 +123,28 @@ class AddActivity : AppCompatActivity() {
             intent.putExtra("memberCount", binding.groupMemberCount.text.toString())
             intent.putExtra("introduction", binding.edittextGroupIntro.text.toString())
             intent.putExtra("fee", binding.edittextGroupFee.text.toString())
+
+            groupService.createGroup(
+                binding.edittextGroupName.text.toString(),
+                "userUuid",
+                binding.groupMemberCount.text.toString().toInt(),
+                java.sql.Date.valueOf("2021-10-10"),
+                "meetingLocation",
+                binding.edittextGroupIntro.text.toString()
+            ).enqueue(object : retrofit2.Callback<String> {
+                override fun onResponse(call: retrofit2.Call<String>, response: retrofit2.Response<String>) {
+                    if (response.isSuccessful) {
+                        Log.e("success", response.body().toString())
+                    } else {
+                        Log.e("error", response.errorBody().toString())
+                    }
+                }
+
+                override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                    Log.e("error", t.message.toString())
+                }
+            })
+
             startActivity(intent)
             finish()
         }
