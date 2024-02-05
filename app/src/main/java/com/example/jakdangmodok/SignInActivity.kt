@@ -16,9 +16,16 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class SignInActivity : AppCompatActivity() {
 
@@ -30,6 +37,14 @@ class SignInActivity : AppCompatActivity() {
 
     private var tokenId: String? = null
     private var email: String? = null
+
+    private val gson = GsonBuilder().setLenient().create()
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl("http://10.0.2.2:4000/")
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .build()
+    val authService = retrofit.create(AuthService::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,6 +108,20 @@ class SignInActivity : AppCompatActivity() {
                                         moveSignUpActivity()
                                     }
                                 }
+
+                            authService.createUser(tokenId!!).enqueue(object : Callback<String> {
+                                override fun onResponse(call: Call<String>, response: Response<String>) {
+                                    if (response.isSuccessful) {
+                                        Log.e(TAG, "success : ${response.body()}")
+                                    } else {
+                                        Log.e(TAG, "fail : ${response.errorBody()?.string()}")
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<String>, t: Throwable) {
+                                    Log.e(TAG, "onFailure : ${t.message}")
+                                }
+                            })
                         }
                     }   catch (e: Exception) {
                         e.printStackTrace()
