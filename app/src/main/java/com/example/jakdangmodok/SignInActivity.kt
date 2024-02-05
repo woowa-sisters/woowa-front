@@ -55,8 +55,6 @@ class SignInActivity : AppCompatActivity() {
         .build()
     val loginService = retrofit2.create(LoginService::class.java)
 
-    val loginService2 = retrofit.create(LoginService::class.java)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -118,32 +116,32 @@ class SignInActivity : AppCompatActivity() {
                                             Log.e(TAG, "googleSignInToken이 null")
                                         }
 
-                                        moveSignUpActivity()
-                                    }
-                                }
+                                        lifecycleScope.launch {
+                                            val accessToken = loginService.loginGoogle(
+                                                "authorization_code",
+                                                getString(R.string.web_client_id),
+                                                getString(R.string.web_client_secret),
+                                                account.serverAuthCode!!
+                                            ).body()!!.access_token
 
-                            lifecycleScope.launch {
-                                val accessToken = loginService.loginGoogle(
-                                    "authorization_code",
-                                    getString(R.string.web_client_id),
-                                    getString(R.string.web_client_secret),
-                                    account.serverAuthCode!!
-                                ).body()!!.access_token
+                                            authService.createUser(TokenRequest(accessToken)).enqueue(object : Callback<String> {
+                                                override fun onResponse(call: Call<String>, response: Response<String>) {
+                                                    if (response.body() == "true") {
+                                                        Log.e(TAG, "onResponse : ${response.body()}")
+                                                        moveMainActivity()
+                                                    } else {
+                                                        Log.e(TAG, "onResponse : ${response.body()}")
+                                                        moveSignUpActivity()
+                                                    }
+                                                }
 
-                                authService.createUser(TokenRequest(accessToken)).enqueue(object : Callback<String> {
-                                    override fun onResponse(call: Call<String>, response: Response<String>) {
-                                        if (response.isSuccessful) {
-                                            Log.e(TAG, "success : ${response.body()}")
-                                        } else {
-                                            Log.e(TAG, "fail : ${response.errorBody()?.string()}")
+                                                override fun onFailure(call: Call<String>, t: Throwable) {
+                                                    Log.e(TAG, "onFailure : ${t.message}")
+                                                }
+                                            })
                                         }
                                     }
-
-                                    override fun onFailure(call: Call<String>, t: Throwable) {
-                                        Log.e(TAG, "onFailure : ${t.message}")
-                                    }
-                                })
-                            }
+                                }
                         }
                     }   catch (e: Exception) {
                         e.printStackTrace()
@@ -155,6 +153,12 @@ class SignInActivity : AppCompatActivity() {
 
     private fun moveSignUpActivity() {
         val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun moveMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
