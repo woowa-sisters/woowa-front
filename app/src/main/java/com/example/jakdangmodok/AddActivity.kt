@@ -107,18 +107,8 @@ class AddActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (binding.groupMemberCount.toString().toInt() < 2) {
-                binding.groupMemberCount.error = "그룹 멤버는 2명 이상이어야 합니다."
-                return@setOnClickListener
-            }
-
             if (binding.edittextGroupIntro.text.toString() == "") {
                 binding.edittextGroupIntro.error = "소개글을 입력해주세요."
-                return@setOnClickListener
-            }
-
-            if (binding.edittextGroupFee.text.toString().toInt() < 0) {
-                binding.edittextGroupFee.error = "올바른 값을 적어주세요."
                 return@setOnClickListener
             }
 
