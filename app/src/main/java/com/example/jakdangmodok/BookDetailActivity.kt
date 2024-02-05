@@ -34,7 +34,6 @@ class BookDetailActivity : AppCompatActivity() {
 
             binding.bookTitle.text = book.title
             binding.bookAuthor.text = book.author
-            binding.bookPage.text = book.itemPage
             binding.bookGenre.text = book.categoryName
             Glide.with(this@BookDetailActivity)
                 .load(book.cover)

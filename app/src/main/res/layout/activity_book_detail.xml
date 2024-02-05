@@ -75,7 +75,7 @@
             android:text="책 제목"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:maxLines="1"
+            android:maxLines="2"
             android:ellipsize="end"
             app:layout_constraintTop_toTopOf="@id/book_image"
             app:layout_constraintStart_toEndOf="@id/book_image"/>
@@ -92,6 +92,7 @@
             app:layout_constraintTop_toBottomOf="@id/book_title"
             app:layout_constraintStart_toEndOf="@id/book_image" />
 
+        <!--
         <TextView
             android:id="@+id/book_page"
             android:layout_width="200sp"
@@ -103,6 +104,7 @@
             android:ellipsize="end"
             app:layout_constraintTop_toBottomOf="@id/book_author"
             app:layout_constraintStart_toEndOf="@id/book_image" />
+            -->
 
         <TextView
             android:id="@+id/book_genre"
@@ -113,9 +115,10 @@
             android:textSize="16dp"
             android:maxLines="1"
             android:ellipsize="end"
-            app:layout_constraintTop_toBottomOf="@id/book_page"
+            app:layout_constraintTop_toBottomOf="@id/book_author"
             app:layout_constraintStart_toEndOf="@id/book_image" />
 
+        <!--
         <TextView
             android:id="@+id/book_group_description"
             android:layout_width="340sp"
@@ -127,6 +130,7 @@
             android:ellipsize="end"
             app:layout_constraintTop_toBottomOf="@id/book_genre"
             tools:ignore="MissingConstraints" />
+            -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -101,7 +101,7 @@ class AddActivity : AppCompatActivity() {
             }
 
             //책은 isbn값이 널인지 확인
-            if (isbn == null) {
+            if (binding.bookIsbnAdd.text.toString() == "") {
                 binding.searchBookAdd.error = "책을 추가해주세요."
                 return@setOnClickListener
             }

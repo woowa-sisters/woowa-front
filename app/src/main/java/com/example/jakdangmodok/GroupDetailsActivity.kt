@@ -93,7 +93,6 @@ class GroupDetailsActivity : AppCompatActivity() {
             val book = bookAPIService.getBookDetail(isbn)
             binding.bookTitle.text = book.title
             binding.bookAuthor.text = book.author
-            binding.bookPage.text = book.itemPage
             binding.bookGenre.text = book.categoryName
             Glide.with(binding.root.context)
                 .load(book.cover)
