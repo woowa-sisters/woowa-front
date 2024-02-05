@@ -95,6 +95,36 @@ class AddActivity : AppCompatActivity() {
 
         // 등록 버튼
         binding.buttonAdd.setOnClickListener() {
+
+            if (binding.edittextGroupName.text.toString() == "") {
+                binding.edittextGroupName.error = "모임명을 입력해주세요."
+                return@setOnClickListener
+            }
+
+            //책은 isbn값이 널인지 확인
+            if (isbn == null) {
+                binding.searchBookAdd.error = "책을 추가해주세요."
+                return@setOnClickListener
+            }
+
+            if (binding.groupMemberCount.toString().toInt() < 2) {
+                binding.groupMemberCount.error = "그룹 멤버는 2명 이상이어야 합니다."
+                return@setOnClickListener
+            }
+
+            if (binding.edittextGroupIntro.text.toString() == "") {
+                binding.edittextGroupIntro.error = "소개글을 입력해주세요."
+                return@setOnClickListener
+            }
+
+            if (binding.edittextGroupFee.text.toString().toInt() < 0) {
+                binding.edittextGroupFee.error = "올바른 값을 적어주세요."
+                return@setOnClickListener
+            }
+
+
+
+
             val intent = Intent(this, GroupDetailsActivity::class.java)
             intent.putExtra("groupName", binding.edittextGroupName.text.toString())
             intent.putExtra("bookInfo", isbn!!)
