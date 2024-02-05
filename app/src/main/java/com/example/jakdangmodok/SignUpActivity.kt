@@ -33,8 +33,6 @@ class SignUpActivity : AppCompatActivity() {
         .build()
     val authService = retrofit.create(AuthService::class.java)
 
-    private val accessToken = intent.getStringExtra("accessToken")
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -65,13 +63,16 @@ class SignUpActivity : AppCompatActivity() {
                     //genre = (fragments[1] as SelectGenreFragment).getSelectedGenre()
 
                     var genre = mutableListOf<Genre>()
-                    for (i in 0..genreList.size) {
+                    for (i in 0..genreList.size-1) {
                         if (i == 0 || i == 3 || i == 7) {
                             genre.add(Genre(genreList[i], true))
                         } else {
                             genre.add(Genre(genreList[i], false))
                         }
                     }
+
+                    val accessToken = intent.getStringExtra("accessToken")
+                    Log.e("SignUpActivity", "accessToken: $accessToken")
 
                     val userInfo = UserInfoRequest(
                         token = accessToken!!,
