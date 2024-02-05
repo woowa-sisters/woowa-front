@@ -8,7 +8,7 @@ import com.example.jakdangmodok.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
 
-    private val binding by lazy { ActivitySignUpBinding.inflate(layoutInflater) }
+    val binding by lazy { ActivitySignUpBinding.inflate(layoutInflater) }
     private val fragments: List<Fragment> by lazy {
         listOf(UsernameFragment(), SelectGenreFragment())
     }
