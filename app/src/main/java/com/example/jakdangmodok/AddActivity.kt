@@ -19,15 +19,14 @@ class AddActivity : AppCompatActivity() {
     private val binding by lazy { ActivityAddBinding.inflate(layoutInflater) }
     private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            isbn = result.data?.getStringExtra("isbn")
+            val isbn = result.data?.getStringExtra("isbn")!!
             val title = result.data?.getStringExtra("title")
             val author = result.data?.getStringExtra("author")
             val categoryName = result.data?.getStringExtra("categoryName")
             val cover = result.data?.getStringExtra("cover")
-            setBookInfo(title, author, categoryName, cover)
+            setBookInfo(isbn, title, author, categoryName, cover)
         }
     }
-    private var isbn: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,7 +83,7 @@ class AddActivity : AppCompatActivity() {
         binding.buttonAdd.setOnClickListener() {
             val intent = Intent(this, GroupDetailsActivity::class.java)
             intent.putExtra("groupName", binding.edittextGroupName.text.toString())
-            intent.putExtra("bookInfo", isbn!!)
+            intent.putExtra("bookInfo", binding.bookIsbnAdd.text.toString())
             intent.putExtra("date", binding.datepickerAdd.dayOfMonth.toString() + "일")
             //intent.putExtra("place", binding.searchPlaceAdd.query.toString())
             intent.putExtra("memberCount", binding.groupMemberCount.text.toString())
@@ -95,7 +94,8 @@ class AddActivity : AppCompatActivity() {
         }
     }
 
-    private fun setBookInfo(title: String?, author: String?, categoryName: String?, cover: String?) {
+    private fun setBookInfo(isbn: String, title: String?, author: String?, categoryName: String?, cover: String?) {
+        binding.bookIsbnAdd.text = isbn
         binding.bookTitleAdd.text = title
         binding.bookAuthorAdd.text = author
         binding.bookGenreAdd.text = categoryName

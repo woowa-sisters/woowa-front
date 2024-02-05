@@ -87,6 +87,13 @@
                 android:textColor="@color/gray"
                 android:gravity="center" />
 
+            <!-- isbn 저장 위한 빈 뷰 -->
+            <TextView
+                android:id="@+id/book_isbn_add"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone" />
+
             <!-- 책 정보 -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/book_container"

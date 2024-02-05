@@ -34,11 +34,9 @@ class GroupDetailsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        lifecycleScope.launch {
-            //setBookInfo(intent.getStringExtra("isbn")!!)
-            initNaverMap()
-            initView()
-        }
+        setBookInfo(intent.getStringExtra("isbn")!!)
+        initNaverMap()
+        initView()
     }
 
     private fun initView() {
@@ -90,15 +88,17 @@ class GroupDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun setBookInfo(isbn: String) {
-        val book = bookAPIService.getBookDetail(isbn)
-        binding.bookTitle.text = book.title
-        binding.bookAuthor.text = book.author
-        binding.bookPage.text = book.itemPage
-        binding.bookGenre.text = book.categoryName
-        Glide.with(binding.root.context)
-            .load(book.cover)
-            .into(binding.bookImage)
+    private fun setBookInfo(isbn: String) {
+        lifecycleScope.launch {
+            val book = bookAPIService.getBookDetail(isbn)
+            binding.bookTitle.text = book.title
+            binding.bookAuthor.text = book.author
+            binding.bookPage.text = book.itemPage
+            binding.bookGenre.text = book.categoryName
+            Glide.with(binding.root.context)
+                .load(book.cover)
+                .into(binding.bookImage)
+        }
     }
 
     // 뒤로가기 버튼
