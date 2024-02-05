@@ -26,16 +26,5 @@ class UsernameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val editTextUsername = binding.edtUsername
-
-        (activity as SignUpActivity).binding.btnSignUp.setOnClickListener {
-            val username = editTextUsername.text.toString()
-            if (username.isBlank()) {
-                editTextUsername.error = "닉네임을 입력해주세요."
-                return@setOnClickListener
-            }
-        }
-
     }
 }
