@@ -9,6 +9,8 @@ import com.example.jakdangmodok.databinding.FragmentUsernameBinding
 
 class UsernameFragment : Fragment() {
 
+    private lateinit var binding: FragmentUsernameBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -17,9 +19,12 @@ class UsernameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentUsernameBinding.inflate(inflater, container, false)
+        binding = FragmentUsernameBinding.inflate(inflater, container, false)
 
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 }

@@ -18,7 +18,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class SignUpActivity : AppCompatActivity() {
 
-    private val binding by lazy { ActivitySignUpBinding.inflate(layoutInflater) }
+    val binding by lazy { ActivitySignUpBinding.inflate(layoutInflater) }
     private val fragments: List<Fragment> by lazy {
         listOf(UsernameFragment(), SelectGenreFragment())
     }
@@ -51,8 +51,11 @@ class SignUpActivity : AppCompatActivity() {
         binding.btnSignUp.setOnClickListener {
             when (binding.btnSignUp.text.toString()) {
                 "계속" -> {
-                    nickname = findViewById<EditText>(R.id.username_input).text.toString()
-
+                    val edtNickname = findViewById<EditText>(R.id.edt_username)
+                    if (edtNickname.text.toString() == "") {
+                        edtNickname.error = "닉네임을 입력해주세요"
+                        return@setOnClickListener
+                    }
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.sign_up_container, fragments[1])
                         .commit()

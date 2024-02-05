@@ -59,7 +59,12 @@
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
-
+            <!-- isbn 저장 위한 빈 뷰 -->
+            <TextView
+                android:id="@+id/book_isbn_detail"
+                android:layout_width="0sp"
+                android:layout_height="0sp"
+                android:visibility="gone" />
 
             <!-- 책 설명 -->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -99,6 +104,7 @@
                     app:layout_constraintStart_toEndOf="@id/book_image"
                     app:layout_constraintTop_toBottomOf="@id/book_title" />
 
+                <!--
                 <TextView
                     android:id="@+id/book_page"
                     android:layout_width="wrap_content"
@@ -109,6 +115,7 @@
                     android:textColor="@color/gray"
                     app:layout_constraintStart_toEndOf="@id/book_image"
                     app:layout_constraintTop_toBottomOf="@id/book_author" />
+                -->
 
                 <TextView
                     android:id="@+id/book_genre"
@@ -119,7 +126,7 @@
                     android:text="구분"
                     android:textColor="@color/gray"
                     app:layout_constraintStart_toEndOf="@id/book_image"
-                    app:layout_constraintTop_toBottomOf="@id/book_page" />
+                    app:layout_constraintTop_toBottomOf="@id/book_author" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -136,8 +143,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="모임장"
-                    android:textColor="@color/gray" />
+                    android:text="모임날짜"
+                    android:textColor="@color/gray"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15sp" />
 
                 <TextView
                     android:id="@+id/date_detail"
@@ -233,7 +242,7 @@
                     android:id="@+id/member_now"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="m / n"
+                    android:text="1 / 1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
