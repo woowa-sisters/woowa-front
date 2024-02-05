@@ -34,6 +34,7 @@ class HomeFragment : Fragment() {
 
         initBook(binding)
         initGroup(binding)
+        setClickListeners(binding)
 
         return binding.root
     }
@@ -192,4 +193,12 @@ class HomeFragment : Fragment() {
         binding.recyclerviewGroupClosingsoon.adapter = GroupAdapter(groupList)
     }
 
+    private fun setClickListeners(binding: FragmentHomeBinding) {
+        binding.bookCoverCenter.setOnClickListener {
+            val intent = Intent(binding.root.context, BookDetailActivity::class.java)
+            intent.putExtra("bookId", binding.bookTitle.text.toString())
+            intent.putExtra("bookAuthor", binding.bookAuthor.text.toString())
+            binding.root.context.startActivity(intent)
+        }
+    }
 }
