@@ -9,5 +9,6 @@
     <string name="continue_button">계속</string>
     <string name="complete_button">완료</string>
     <string name="web_client_id">105352084548-k0ct890am5lv8sglun09d1frk3q29oe5.apps.googleusercontent.com</string>
-    <string name="google_client_id">105352084548-ur4o8vhaavb4rp1age8m7scj2i4mblal.apps.googleusercontent.com</string>
+    <string name="web_client_secret">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</string>
+    <string name="google_client_id">105352084548-s12s4m8q6tqmttikkg1el4f1ukqejmgn.apps.googleusercontent.com</string>
 </resources>

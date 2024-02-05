@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.lifecycleScope
 import com.example.jakdangmodok.databinding.ActivitySignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -46,6 +47,15 @@ class SignInActivity : AppCompatActivity() {
         .build()
     val authService = retrofit.create(AuthService::class.java)
 
+    private val retrofit2: Retrofit = Retrofit.Builder()
+        .baseUrl("https://www.googleapis.com/")
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .build()
+    val loginService = retrofit2.create(LoginService::class.java)
+
+    val loginService2 = retrofit.create(LoginService::class.java)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -71,6 +81,7 @@ class SignInActivity : AppCompatActivity() {
     private fun getGoogleClient(): GoogleSignInClient {
         val googleSignInOption = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.web_client_id))
+            .requestServerAuthCode(getString(R.string.web_client_id))
             .requestEmail()
             .build()
 
@@ -89,6 +100,8 @@ class SignInActivity : AppCompatActivity() {
                     try {
                         val account = task.getResult(ApiException::class.java)
                         tokenId = account.idToken
+                        Log.e("dsdfsdfsdfd", account.serverAuthCode!!)
+
                         if (tokenId != null && tokenId != "") {
                             val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
                             firebaseAuth.signInWithCredential(credential)
@@ -109,6 +122,26 @@ class SignInActivity : AppCompatActivity() {
                                     }
                                 }
 
+                            loginService.loginGoogle(
+                                "authorization_code",
+                                getString(R.string.web_client_id),
+                                getString(R.string.web_client_secret),
+                                account.serverAuthCode!!
+                            ).enqueue(object : Callback<LoginGoogleResponse> {
+                                override fun onResponse(call: Call<LoginGoogleResponse>, response: Response<LoginGoogleResponse>) {
+                                    if (response.isSuccessful) {
+                                        Log.e(TAG, "success : ${response.body()}")
+                                    } else {
+                                        Log.e(TAG, "fail : ${response.errorBody()?.string()}")
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<LoginGoogleResponse>, t: Throwable) {
+                                    Log.e(TAG, "onFailure : ${t.message}")
+                                }
+                            })
+
+                            /*
                             authService.createUser(tokenId!!).enqueue(object : Callback<String> {
                                 override fun onResponse(call: Call<String>, response: Response<String>) {
                                     if (response.isSuccessful) {
@@ -122,6 +155,7 @@ class SignInActivity : AppCompatActivity() {
                                     Log.e(TAG, "onFailure : ${t.message}")
                                 }
                             })
+                            */
                         }
                     }   catch (e: Exception) {
                         e.printStackTrace()
