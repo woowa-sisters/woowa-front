@@ -82,9 +82,13 @@ class AddActivity : AppCompatActivity() {
         // 등록 버튼
         binding.buttonAdd.setOnClickListener() {
             val intent = Intent(this, GroupDetailsActivity::class.java)
+            intent.putExtra("isbn", binding.bookIsbnAdd.text.toString())
             intent.putExtra("groupName", binding.edittextGroupName.text.toString())
             intent.putExtra("bookInfo", binding.bookIsbnAdd.text.toString())
-            intent.putExtra("date", binding.datepickerAdd.dayOfMonth.toString() + "일")
+            intent.putExtra("date",
+                binding.datepickerAdd.year.toString() + "년 "
+                + binding.datepickerAdd.month.toString() + "월 "
+                + binding.datepickerAdd.dayOfMonth.toString() + "일")
             //intent.putExtra("place", binding.searchPlaceAdd.query.toString())
             intent.putExtra("memberCount", binding.groupMemberCount.text.toString())
             intent.putExtra("introduction", binding.edittextGroupIntro.text.toString())
