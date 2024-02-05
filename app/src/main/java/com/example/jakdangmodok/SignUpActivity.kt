@@ -22,7 +22,6 @@ class SignUpActivity : AppCompatActivity() {
     private val fragments: List<Fragment> by lazy {
         listOf(UsernameFragment(), SelectGenreFragment())
     }
-    private lateinit var nickname: String
     val genreList = listOf("소설", "시/에세이", "경제/경영", "자기계발", "인문", "역사/문화", "사회", "과학", "예술/대중문화", "종교", "외국어", "기술/공학", "컴퓨터/IT", "취미/스포츠", "건강/다이어트", "가정/육아", "요리", "여행", "교재/수험서", "커리어/수험서", "청소년", "어린이", "만화", "잡지", "해외도서", "오디오북")
 
     private val gson = GsonBuilder().setLenient().create()
@@ -77,6 +76,7 @@ class SignUpActivity : AppCompatActivity() {
                     val accessToken = intent.getStringExtra("accessToken")
                     Log.e("SignUpActivity", "accessToken: $accessToken")
 
+                    val nickname = findViewById<EditText>(R.id.edt_username).text.toString()
                     val userInfo = UserInfoRequest(
                         token = accessToken!!,
                         nickname = nickname,
