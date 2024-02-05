@@ -18,6 +18,24 @@ interface AuthService {
         @Body tokenValue: TokenRequest,    // 모임명
     ): Call<String>
 
+    // 유저 정보 닉네임, 장르 추가
+    @Headers("Content-Type: application/json")
+    @POST("v1/signup")
+    fun addUserInfo(
+        @Body userInfo: UserInfoRequest,    // 모임명
+    ): Call<String>
+
 }
 
 data class TokenRequest(val tokenValue: String)
+
+data class UserInfoRequest(
+    val token: String,
+    val nickname: String,
+    val jenre: List<Genre>
+)
+
+data class Genre(
+    val genre: String,
+    val isSelected: Boolean
+)

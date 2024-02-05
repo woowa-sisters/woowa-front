@@ -131,7 +131,7 @@ class SignInActivity : AppCompatActivity() {
                                                         moveMainActivity()
                                                     } else {
                                                         Log.e(TAG, "onResponse : ${response.body()}")
-                                                        moveSignUpActivity()
+                                                        moveSignUpActivity(accessToken)
                                                     }
                                                 }
 
@@ -151,8 +151,9 @@ class SignInActivity : AppCompatActivity() {
         )
     }
 
-    private fun moveSignUpActivity() {
+    private fun moveSignUpActivity(accessToken: String) {
         val intent = Intent(this, SignUpActivity::class.java)
+        intent.putExtra("accessToken", accessToken)
         startActivity(intent)
         finish()
     }
