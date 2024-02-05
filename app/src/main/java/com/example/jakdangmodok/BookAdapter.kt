@@ -10,7 +10,16 @@ import com.bumptech.glide.Glide
 import com.example.jakdangmodok.databinding.ItemBookBinding
 import com.example.jakdangmodok.databinding.ItemBookInfoBinding
 
-class BookViewHolder(val binding: ItemBookBinding): RecyclerView.ViewHolder(binding.root)
+class BookViewHolder(val binding: ItemBookBinding): RecyclerView.ViewHolder(binding.root) {
+init {
+        binding.root.setOnClickListener {
+            val intent = Intent(binding.root.context, BookDetailActivity::class.java)
+            intent.putExtra("bookId", binding.bookTitle.text.toString())
+            intent.putExtra("bookAuthor", binding.bookAuthor.text.toString())
+            binding.root.context.startActivity(intent)
+        }
+    }
+}
 
 class BookAdapter(val bookList: List<Book>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
