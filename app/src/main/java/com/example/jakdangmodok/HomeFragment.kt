@@ -2,6 +2,7 @@ package com.example.jakdangmodok
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,8 +19,6 @@ class HomeFragment : Fragment() {
 
     private val bookAPIService = BookAPIService()
 
-    private val mainbookTitleList: ArrayList<String> = arrayListOf("내 인생의 책들", "미래는 저녁8시", "감정의 문화정치")
-    private val mainbookAuthorList: ArrayList<String> = arrayListOf("리처드 도킨스", "가운데 사람", "오른쪽 사람")
     private val groupList: ArrayList<String> = arrayListOf("코딩모임", "영화모임", "독서모임", "게임모임", "운동모임", "요리모임", "여행모임", "공연모임", "음악모임", "봉사모임", "기타모임")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +53,7 @@ class HomeFragment : Fragment() {
                 .error(defaultImage)
                 .fallback(defaultImage)
                 .into(binding.bookCoverCenter)
+            binding.bookIsbnHome.text = bookList[index].isbn
 
             // 좌우 추천 도서
             Glide.with(binding.root.context)
@@ -78,6 +78,7 @@ class HomeFragment : Fragment() {
                         .error(defaultImage)
                         .fallback(defaultImage)
                         .into(binding.bookCoverCenter)
+                    binding.bookIsbnHome.text = bookList[index-1].isbn
                     if (index == 1) {
                         Glide.with(binding.root.context)
                             .load(bookList[maxIndex].cover)
@@ -106,6 +107,8 @@ class HomeFragment : Fragment() {
                         .error(defaultImage)
                         .fallback(defaultImage)
                         .into(binding.bookCoverCenter)
+                    binding.bookIsbnHome.text = bookList[maxIndex].isbn
+
                     Glide.with(binding.root.context)
                         .load(bookList[maxIndex-1].cover)
                         .error(defaultImage)
@@ -131,6 +134,8 @@ class HomeFragment : Fragment() {
                         .error(defaultImage)
                         .fallback(defaultImage)
                         .into(binding.bookCoverCenter)
+                    binding.bookIsbnHome.text = bookList[index+1].isbn
+
                     Glide.with(binding.root.context)
                         .load(bookList[index].cover)
                         .error(defaultImage)
@@ -159,6 +164,8 @@ class HomeFragment : Fragment() {
                         .error(defaultImage)
                         .fallback(defaultImage)
                         .into(binding.bookCoverCenter)
+                    binding.bookIsbnHome.text = bookList[0].isbn
+
                     Glide.with(binding.root.context)
                         .load(bookList[maxIndex].cover)
                         .error(defaultImage)
@@ -196,8 +203,7 @@ class HomeFragment : Fragment() {
     private fun setClickListeners(binding: FragmentHomeBinding) {
         binding.bookCoverCenter.setOnClickListener {
             val intent = Intent(binding.root.context, BookDetailActivity::class.java)
-            intent.putExtra("bookId", binding.bookTitle.text.toString())
-            intent.putExtra("bookAuthor", binding.bookAuthor.text.toString())
+            intent.putExtra("isbn", binding.bookIsbnHome.text.toString())
             binding.root.context.startActivity(intent)
         }
     }

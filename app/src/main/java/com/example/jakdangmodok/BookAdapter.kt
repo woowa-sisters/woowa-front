@@ -2,6 +2,7 @@ package com.example.jakdangmodok
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -14,8 +15,7 @@ class BookViewHolder(val binding: ItemBookBinding): RecyclerView.ViewHolder(bind
 init {
         binding.root.setOnClickListener {
             val intent = Intent(binding.root.context, BookDetailActivity::class.java)
-            intent.putExtra("bookId", binding.bookTitle.text.toString())
-            intent.putExtra("bookAuthor", binding.bookAuthor.text.toString())
+            intent.putExtra("isbn", binding.bookIsbn.text.toString())
             binding.root.context.startActivity(intent)
         }
     }
@@ -40,6 +40,7 @@ class BookAdapter(val bookList: List<Book>): RecyclerView.Adapter<RecyclerView.V
             .error(defaultImage)
             .fallback(defaultImage)
             .into(binding.bookImage)
+        binding.bookIsbn.text = bookList[position].isbn
     }
 
 }

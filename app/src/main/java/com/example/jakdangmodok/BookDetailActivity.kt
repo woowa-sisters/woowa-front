@@ -2,13 +2,17 @@ package com.example.jakdangmodok
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.jakdangmodok.databinding.ActivityBookDetailBinding
+import kotlinx.coroutines.launch
 
 class BookDetailActivity : AppCompatActivity() {
 
     val binding by lazy { ActivityBookDetailBinding.inflate(layoutInflater) }
+    private val bookAPIService = BookAPIService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,14 +22,21 @@ class BookDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        // 책 제목
-        intent.getStringExtra("bookId")?.let {
-            binding.bookTitle.text = it
-        }
+        setBookInfo()
+    }
 
-        // 책 저자
-        intent.getStringExtra("bookAuthor")?.let {
-            binding.bookAuthor.text = it
+    private fun setBookInfo() {
+        lifecycleScope.launch {
+            val isbn = intent.getStringExtra("isbn")!!
+            val book = bookAPIService.getBookDetail(isbn)
+
+            binding.bookTitle.text = book.title
+            binding.bookAuthor.text = book.author
+            binding.bookPage.text = book.itemPage
+            binding.bookGenre.text = book.categoryName
+            Glide.with(this@BookDetailActivity)
+                .load(book.cover)
+                .into(binding.bookImage)
         }
     }
 
