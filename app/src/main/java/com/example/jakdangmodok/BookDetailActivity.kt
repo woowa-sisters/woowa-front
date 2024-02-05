@@ -1,9 +1,11 @@
 package com.example.jakdangmodok
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.jakdangmodok.databinding.ActivityBookDetailBinding
@@ -37,6 +39,12 @@ class BookDetailActivity : AppCompatActivity() {
             Glide.with(this@BookDetailActivity)
                 .load(book.cover)
                 .into(binding.bookImage)
+        }
+    }
+
+    private fun setClickListeners() {
+        binding.btnSubscribeBook.setOnClickListener {
+            binding.btnSubscribeBook.setBackgroundResource(R.drawable.baseline_favorite)
         }
     }
 
