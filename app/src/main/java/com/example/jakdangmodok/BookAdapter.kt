@@ -2,6 +2,7 @@ package com.example.jakdangmodok
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -10,7 +11,15 @@ import com.bumptech.glide.Glide
 import com.example.jakdangmodok.databinding.ItemBookBinding
 import com.example.jakdangmodok.databinding.ItemBookInfoBinding
 
-class BookViewHolder(val binding: ItemBookBinding): RecyclerView.ViewHolder(binding.root)
+class BookViewHolder(val binding: ItemBookBinding): RecyclerView.ViewHolder(binding.root) {
+init {
+        binding.root.setOnClickListener {
+            val intent = Intent(binding.root.context, BookDetailActivity::class.java)
+            intent.putExtra("isbn", binding.bookIsbn.text.toString())
+            binding.root.context.startActivity(intent)
+        }
+    }
+}
 
 class BookAdapter(val bookList: List<Book>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -31,6 +40,7 @@ class BookAdapter(val bookList: List<Book>): RecyclerView.Adapter<RecyclerView.V
             .error(defaultImage)
             .fallback(defaultImage)
             .into(binding.bookImage)
+        binding.bookIsbn.text = bookList[position].isbn
     }
 
 }

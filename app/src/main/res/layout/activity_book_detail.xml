@@ -59,7 +59,7 @@
         <ImageView
             android:id="@+id/book_image"
             android:layout_width="110dp"
-            android:layout_height="140dp"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintTop_toTopOf="parent"
@@ -68,57 +68,76 @@
         <!-- 책 정보 -->
         <TextView
             android:id="@+id/book_title"
-            android:layout_width="wrap_content"
+            android:layout_width="180sp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="17dp"
             android:layout_marginTop="0dp"
             android:text="책 제목"
             android:textSize="20dp"
             android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
             app:layout_constraintTop_toTopOf="@id/book_image"
             app:layout_constraintStart_toEndOf="@id/book_image"/>
 
         <TextView
             android:id="@+id/book_author"
-            android:layout_width="wrap_content"
+            android:layout_width="200sp"
             android:layout_height="wrap_content"
             android:layout_margin="17dp"
             android:text="저자"
             android:textSize="16dp"
+            android:maxLines="1"
+            android:ellipsize="end"
             app:layout_constraintTop_toBottomOf="@id/book_title"
             app:layout_constraintStart_toEndOf="@id/book_image" />
 
         <TextView
             android:id="@+id/book_page"
-            android:layout_width="wrap_content"
+            android:layout_width="200sp"
             android:layout_height="wrap_content"
             android:layout_margin="17dp"
             android:text="쪽수"
             android:textSize="16dp"
+            android:maxLines="1"
+            android:ellipsize="end"
             app:layout_constraintTop_toBottomOf="@id/book_author"
             app:layout_constraintStart_toEndOf="@id/book_image" />
 
         <TextView
             android:id="@+id/book_genre"
-            android:layout_width="wrap_content"
+            android:layout_width="200sp"
             android:layout_height="wrap_content"
             android:layout_margin="17dp"
             android:text="장르"
             android:textSize="16dp"
+            android:maxLines="1"
+            android:ellipsize="end"
             app:layout_constraintTop_toBottomOf="@id/book_page"
             app:layout_constraintStart_toEndOf="@id/book_image" />
 
         <TextView
             android:id="@+id/book_group_description"
-            android:layout_width="wrap_content"
+            android:layout_width="340sp"
             android:layout_height="wrap_content"
             android:layout_margin="17dp"
             android:text="줄거리"
             android:textSize="14dp"
+            android:maxLines="3"
+            android:ellipsize="end"
             app:layout_constraintTop_toBottomOf="@id/book_genre"
             tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15sp"
+        android:text="관련 모임"
+        android:textColor="@color/gray"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_book_detail_group"

@@ -1,19 +1,20 @@
 package com.example.jakdangmodok
 
-import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.jakdangmodok.databinding.ActivityGroupDetailsBinding
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
+import com.example.jakdangmodok.databinding.ActivityBookDetailBinding
+import kotlinx.coroutines.launch
 
 class BookDetailActivity : AppCompatActivity() {
 
-    val binding by lazy { ActivityGroupDetailsBinding.inflate(layoutInflater) }
-    private val memberList: ArrayList<String> = arrayListOf("김단비", "연두", "우주", "희", "유나", "유진", "유정")
-    private val memberWaitingList: ArrayList<String> = arrayListOf("에이든", "피터", "토니", "스티브", "브루스", "토르", "클린트", "나타샤", "와칸다", "페퍼", "헬라")
-    private val groupList: ArrayList<String> = arrayListOf("코딩모임", "영화모임", "독서모임", "게임모임", "운동모임", "요리모임", "여행모임", "공연모임", "음악모임", "봉사모임", "기타모임")
-    private val commentList: ArrayList<String> = arrayListOf("안녕하세요", "반갑습니다", "모임장님 안녕하세요", "모임장님 반갑습니다")
+    val binding by lazy { ActivityBookDetailBinding.inflate(layoutInflater) }
+    private val bookAPIService = BookAPIService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,11 +24,28 @@ class BookDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        // 모임명
-        intent.getStringExtra("groupId")?.let {
-            binding.groupTitle.text = it
-        }
+        setBookInfo()
+    }
 
+    private fun setBookInfo() {
+        lifecycleScope.launch {
+            val isbn = intent.getStringExtra("isbn")!!
+            val book = bookAPIService.getBookDetail(isbn)
+
+            binding.bookTitle.text = book.title
+            binding.bookAuthor.text = book.author
+            binding.bookPage.text = book.itemPage
+            binding.bookGenre.text = book.categoryName
+            Glide.with(this@BookDetailActivity)
+                .load(book.cover)
+                .into(binding.bookImage)
+        }
+    }
+
+    private fun setClickListeners() {
+        binding.btnSubscribeBook.setOnClickListener {
+            binding.btnSubscribeBook.setBackgroundResource(R.drawable.baseline_favorite)
+        }
     }
 
     // 뒤로가기 버튼
