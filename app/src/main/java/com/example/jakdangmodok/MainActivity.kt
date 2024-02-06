@@ -45,8 +45,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.menu_notification -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_container, fragments[4]).commit()
+                val notiIntent = Intent(this, ProfileNotificationActivity::class.java)
+                startActivity(notiIntent)
                 true
             }
 
