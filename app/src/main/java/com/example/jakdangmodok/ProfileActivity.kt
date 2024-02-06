@@ -3,12 +3,27 @@ package com.example.jakdangmodok
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import androidx.lifecycle.lifecycleScope
 import com.example.jakdangmodok.databinding.ActivityProfileBinding
+import com.google.gson.GsonBuilder
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class ProfileActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityProfileBinding.inflate(layoutInflater) }
+
+    private val gson = GsonBuilder().setLenient().create()
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl("http://10.0.2.2:4000/")
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .build()
+    val authService = retrofit.create(AuthService::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +55,23 @@ class ProfileActivity : AppCompatActivity() {
         binding.buttonCompleteList.setOnClickListener {
             val intent = Intent(this, CompleteGroupActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.buttonLogout.setOnClickListener {
+            Log.e("dsfsfsfdf", intent.getStringExtra("accessToken")!!)
+            authService.logout("Bearer " + intent.getStringExtra("accessToken")!!).enqueue(object : retrofit2.Callback<String> {
+                override fun onResponse(call: retrofit2.Call<String>, response: retrofit2.Response<String>) {
+                    if (response.isSuccessful) {
+                        Log.e("sdfsf", "onResponse : ${response.body()}")
+                    } else {
+                        Log.e("sdfsf", "onResponseFail : ${response.body()}")
+                    }
+                }
+
+                override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                    Log.e("sdfsf", "t.message.toString()")
+                }
+            })
         }
 
     }

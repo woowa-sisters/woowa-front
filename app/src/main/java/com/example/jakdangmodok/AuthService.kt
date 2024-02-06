@@ -2,9 +2,11 @@ package com.example.jakdangmodok
 
 import org.json.JSONStringer
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import java.util.Date
@@ -16,6 +18,12 @@ interface AuthService {
     @POST("v1/token/save")
     fun createUser(
         @Body tokenValue: TokenRequest,    // 모임명
+    ): Call<String>
+
+    // 로그아웃
+    @POST("/v1/logout")
+    fun logout(
+        @Header("Authorization") authorization: String,
     ): Call<String>
 
     // 유저 정보 닉네임, 장르 추가

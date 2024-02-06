@@ -21,7 +21,6 @@ import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -126,12 +125,13 @@ class SignInActivity : AppCompatActivity() {
 
                                             val accessToken = responseLogin.access_token
                                             val refreshToken = responseLogin.refresh_token
+                                            Log.e(TAG, "responseLogin : $responseLogin \n access: $accessToken \n refresh: $refreshToken")
 
                                             authService.createUser(TokenRequest(accessToken, refreshToken)).enqueue(object : Callback<String> {
                                                 override fun onResponse(call: Call<String>, response: Response<String>) {
                                                     if (response.body() == "true") {
                                                         Log.e(TAG, "onResponse : ${response.body()}")
-                                                        moveMainActivity()
+                                                        moveMainActivity(accessToken)
                                                     } else {
                                                         Log.e(TAG, "onResponse : ${response.body()}")
                                                         moveSignUpActivity(accessToken)
@@ -161,8 +161,9 @@ class SignInActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun moveMainActivity() {
+    private fun moveMainActivity(accessToken: String) {
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("accessToken", accessToken)
         startActivity(intent)
         finish()
     }

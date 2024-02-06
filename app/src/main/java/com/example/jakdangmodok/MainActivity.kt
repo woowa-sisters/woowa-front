@@ -38,8 +38,9 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_profile -> {
-                val intent = Intent(this, ProfileActivity::class.java)
-                startActivity(intent)
+                val mainIntent = Intent(this, ProfileActivity::class.java)
+                mainIntent.putExtra("accessToken", intent.getStringExtra("accessToken"))
+                startActivity(mainIntent)
                 true
             }
 
