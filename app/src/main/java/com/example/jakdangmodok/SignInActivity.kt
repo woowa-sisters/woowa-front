@@ -117,14 +117,17 @@ class SignInActivity : AppCompatActivity() {
                                         }
 
                                         lifecycleScope.launch {
-                                            val accessToken = loginService.loginGoogle(
+                                            val responseLogin = loginService.loginGoogle(
                                                 "authorization_code",
                                                 getString(R.string.web_client_id),
                                                 getString(R.string.web_client_secret),
                                                 account.serverAuthCode!!
-                                            ).body()!!.access_token
+                                            ).body()!!
 
-                                            authService.createUser(TokenRequest(accessToken)).enqueue(object : Callback<String> {
+                                            val accessToken = responseLogin.access_token
+                                            val refreshToken = responseLogin.refresh_token
+
+                                            authService.createUser(TokenRequest(accessToken, refreshToken)).enqueue(object : Callback<String> {
                                                 override fun onResponse(call: Call<String>, response: Response<String>) {
                                                     if (response.body() == "true") {
                                                         Log.e(TAG, "onResponse : ${response.body()}")

@@ -27,7 +27,7 @@ interface AuthService {
 
 }
 
-data class TokenRequest(val tokenValue: String)
+data class TokenRequest(val accessToken: String, val refreshToken: String)
 
 data class UserInfoRequest(
     val token: String,

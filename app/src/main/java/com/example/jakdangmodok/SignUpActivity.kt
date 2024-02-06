@@ -73,6 +73,7 @@ class SignUpActivity : AppCompatActivity() {
                         }
                     }
 
+                    /*
                     val accessToken = intent.getStringExtra("accessToken")
                     Log.e("SignUpActivity", "accessToken: $accessToken")
 
@@ -96,6 +97,7 @@ class SignUpActivity : AppCompatActivity() {
                             Log.e("SignUpActivity", "회원가입 실패 ${t.message}}")
                         }
                     })
+                     */
 
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
